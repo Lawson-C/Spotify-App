@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Spotify-App</string>
+    <string name="sign_up">Sign up</string>
+    <string name="log_in">Log in</string>
 </resources>
