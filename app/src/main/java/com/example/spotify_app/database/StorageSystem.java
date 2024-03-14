@@ -20,7 +20,7 @@ public class StorageSystem {
         localDBHelper = new LocalAccountDBHelper(null);
     }
 
-    public StorageSystem getInstance() {
+    public static StorageSystem getInstance() {
         return instance == null ? new StorageSystem() : instance;
     }
 
