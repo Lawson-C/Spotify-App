@@ -7,6 +7,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
 import com.example.spotify_app.database.StorageSystem;
 
 import com.example.spotify_app.R;
@@ -16,6 +18,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText username;
     EditText password;
     Button loginButton;
+    CardView card;
 
     // StorageSystem db = StorageSystem.getInstance();
 
@@ -29,6 +32,9 @@ public class LoginActivity extends AppCompatActivity {
         username = findViewById(R.id.usernameDialog);
         password = findViewById(R.id.passwordDialog);
         loginButton = findViewById(R.id.loginButton);
+        card = findViewById(R.id.loginCard);
+        card.setBackgroundResource(R.drawable.card_background);
+
 
         // db.writeLocalAccount(1, "test", "pass_two", 1244);
         // db.deleteLocalAccount(0);
