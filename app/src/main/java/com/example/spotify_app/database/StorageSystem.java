@@ -3,6 +3,7 @@ package com.example.spotify_app.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -11,7 +12,7 @@ import androidx.annotation.Nullable;
 public class StorageSystem {
     public static final String DATABASE_NAME = "AppData.db";
 
-    private static StorageSystem instance;
+    public static StorageSystem instance;
     private static SpotifyAccountDBHelper spotifyDBHelper;
     private static LocalAccountDBHelper localDBHelper;
 
@@ -20,7 +21,12 @@ public class StorageSystem {
         localDBHelper = new LocalAccountDBHelper(null);
     }
 
-    public StorageSystem getInstance() {
+    public StorageSystem(Context context) {
+        spotifyDBHelper = new SpotifyAccountDBHelper(context);
+        localDBHelper = new LocalAccountDBHelper(context);
+    }
+
+    public static StorageSystem getInstance() {
         return instance == null ? new StorageSystem() : instance;
     }
 
@@ -54,6 +60,35 @@ public class StorageSystem {
         cursor.moveToNext();
         int index = cursor.getColumnIndex(field);
         String value = cursor.getString(index);
+        cursor.close();
+
+        return value;
+    }
+
+    // LocalAccount Retrieve (by user & password)
+    public String readLocalAccountByUserPass(String user, String pass, String field) {
+        SQLiteDatabase db = localDBHelper.getReadableDatabase();
+
+        String userQuery = LocalAccountEntry.COLUMN_NAME + " = ?";
+        String passQuery = LocalAccountEntry.COLUMN_PASSWORD + " = ?";
+        Cursor cursor = db.query(
+                LocalAccountEntry.TABLE_NAME,
+                null,
+                userQuery + " AND " + passQuery,
+                new String[]{user, pass},
+                null,
+                null,
+                LocalAccountEntry.COLUMN_ID + " DESC"
+        );
+
+        cursor.moveToNext();
+        int index = cursor.getColumnIndex(field);
+        String value = "";
+        try {
+            value = cursor.getString(index);
+        } catch (CursorIndexOutOfBoundsException c) {
+            return null;
+        }
         cursor.close();
 
         return value;
@@ -126,7 +161,7 @@ public class StorageSystem {
     }
 
     private static class LocalAccountDBHelper extends SQLiteOpenHelper {
-        public static final int DATABASE_VERSION = 0;
+        public static final int DATABASE_VERSION = 1;
 
         public LocalAccountDBHelper(@Nullable Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -163,7 +198,7 @@ public class StorageSystem {
     }
 
     private static class SpotifyAccountDBHelper extends SQLiteOpenHelper {
-        public static final int DATABASE_VERSION = 0;
+        public static final int DATABASE_VERSION = 1;
 
         public SpotifyAccountDBHelper(@Nullable Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
