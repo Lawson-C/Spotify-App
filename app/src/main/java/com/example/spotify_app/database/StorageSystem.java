@@ -1,5 +1,6 @@
 package com.example.spotify_app.database;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -8,6 +9,8 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import com.example.spotify_app.loginScreen.LoginActivity;
 
 import java.util.Locale;
 
@@ -23,16 +26,15 @@ public class StorageSystem {
         localDBHelper = new LocalAccountDBHelper(context);
     }
 
-    public static StorageSystem getInstance() {
-        return instance == null ? new StorageSystem(null) : instance;
-    }
-
-    public static StorageSystem getInstance(Context context) {
+    /*
+    * StorageSystem must be initialized at startup
+     */
+    public static StorageSystem init(Context context) {
         return instance == null ? new StorageSystem(context) : instance;
     }
 
     // LocalAccount Create
-    public void writeLocalAccount(int id, String name, String password, int spotifyID) {
+    public static void writeLocalAccount(int id, String name, String password, int spotifyID) {
         SQLiteDatabase db = localDBHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -50,7 +52,7 @@ public class StorageSystem {
      *   @param  value         : the value to match
      *   @param  responseField : the name of the variable requested from the database
      */
-    public String readLocalAccountValue(String requestField, String value, String responseField) {
+    public static String readLocalAccountValue(String requestField, String value, String responseField) {
         SQLiteDatabase db = localDBHelper.getReadableDatabase();
 
         Cursor cursor = db.query(
@@ -78,7 +80,7 @@ public class StorageSystem {
      *   @param  value         : the value to match
      *   @param  responseField : the names of the variable requested from the database
      */
-    public String[][] readLocalAccountValueArray(String requestField, String value, String[] responseField) {
+    public static String[][] readLocalAccountValueArray(String requestField, String value, String[] responseField) {
         SQLiteDatabase db = localDBHelper.getReadableDatabase();
 
         Cursor cursor = db.query(
@@ -105,7 +107,7 @@ public class StorageSystem {
     }
 
     // LocalAccount Retrieve from ID
-    public String readLocalAccountID(int id, String field) {
+    public static String readLocalAccountID(int id, String field) {
         SQLiteDatabase db = localDBHelper.getReadableDatabase();
 
         Cursor cursor = db.query(
@@ -127,7 +129,7 @@ public class StorageSystem {
     }
 
     //  LocalAccount Update
-    public void setIntLocalAccount(int id, String field, int value) {
+    public static void setIntLocalAccount(int id, String field, int value) {
         SQLiteDatabase db = localDBHelper.getWritableDatabase();
         ContentValues content = new ContentValues();
 
@@ -142,7 +144,7 @@ public class StorageSystem {
     }
 
     // LocalAccount Delete
-    public void deleteLocalAccount(int id) {
+    public static void deleteLocalAccount(int id) {
         SQLiteDatabase db = localDBHelper.getWritableDatabase();
 
         db.delete(
@@ -153,7 +155,7 @@ public class StorageSystem {
     }
 
     // SpotifyAccount Create
-    public void writeSpotifyAccount(int id, String name, String email, String url, String href, String image_url, int image_width, int image_height, String uri) {
+    public static void writeSpotifyAccount(int id, String name, String email, String url, String href, String image_url, int image_width, int image_height, String uri) {
         SQLiteDatabase db = spotifyDBHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -171,7 +173,7 @@ public class StorageSystem {
     }
 
     // SpotifyAccount Retrieve
-    public String readSpotifyAccount(int id, String field) {
+    public static String readSpotifyAccount(int id, String field) {
         SQLiteDatabase db = spotifyDBHelper.getReadableDatabase();
 
         Cursor cursor = db.query(
