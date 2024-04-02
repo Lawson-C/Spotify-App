@@ -4,24 +4,31 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.util.Locale;
+
 public class StorageSystem {
-    public static final String DATABASE_NAME = "AppData.db";
+    public static final String DATABASE_NAME = "/data/AppData.db";
 
     private static StorageSystem instance;
     private static SpotifyAccountDBHelper spotifyDBHelper;
     private static LocalAccountDBHelper localDBHelper;
 
-    private StorageSystem() {
-        spotifyDBHelper = new SpotifyAccountDBHelper(null);
-        localDBHelper = new LocalAccountDBHelper(null);
+    private StorageSystem(@Nullable Context context) {
+        spotifyDBHelper = new SpotifyAccountDBHelper(context);
+        localDBHelper = new LocalAccountDBHelper(context);
     }
 
     public static StorageSystem getInstance() {
-        return instance == null ? new StorageSystem() : instance;
+        return instance == null ? new StorageSystem(null) : instance;
+    }
+
+    public static StorageSystem getInstance(Context context) {
+        return instance == null ? new StorageSystem(context) : instance;
     }
 
     // LocalAccount Create
@@ -37,8 +44,68 @@ public class StorageSystem {
         db.insert(LocalAccountEntry.TABLE_NAME, null, values);
     }
 
-    // LocalAccount Retrieve
-    public String readLocalAccount(int id, String field) {
+    /*
+     * Returns a requested variable from a table entry which has a field that matches the given value
+     *   @param  requestField  : the name of the field required to match the given value
+     *   @param  value         : the value to match
+     *   @param  responseField : the name of the variable requested from the database
+     */
+    public String readLocalAccountValue(String requestField, String value, String responseField) {
+        SQLiteDatabase db = localDBHelper.getReadableDatabase();
+
+        Cursor cursor = db.query(
+                LocalAccountEntry.TABLE_NAME,
+                null,
+                requestField + " = ?",
+                new String[]{value},
+                null,
+                null,
+                LocalAccountEntry.COLUMN_ID + " DESC"
+        );
+
+        cursor.moveToNext();
+        int index = cursor.getColumnIndex(responseField);
+        String returnValue = cursor.getString(index);
+        cursor.close();
+
+        return returnValue;
+    }
+
+    /*
+     * Returns a tuple containing the requested fields and requested values from a table entry where the requestedField matches
+     * the given value
+     *   @param  requestField  : the name of the field required to match the given value
+     *   @param  value         : the value to match
+     *   @param  responseField : the names of the variable requested from the database
+     */
+    public String[][] readLocalAccountValueArray(String requestField, String value, String[] responseField) {
+        SQLiteDatabase db = localDBHelper.getReadableDatabase();
+
+        Cursor cursor = db.query(
+                LocalAccountEntry.TABLE_NAME,
+                null,
+                requestField + " = ? ",
+                new String[]{value},
+                null,
+                null,
+                LocalAccountEntry.COLUMN_ID + " DESC"
+        );
+
+        String[][] responseValues = new String[responseField.length][];
+
+        for (int i = 0; i < responseValues.length; i++) {
+            cursor.moveToNext();
+            int index = cursor.getColumnIndex(responseField[i]);
+            responseValues[i] = new String[]{responseField[i], cursor.getString(index)};
+        }
+
+        cursor.close();
+
+        return responseValues;
+    }
+
+    // LocalAccount Retrieve from ID
+    public String readLocalAccountID(int id, String field) {
         SQLiteDatabase db = localDBHelper.getReadableDatabase();
 
         Cursor cursor = db.query(
@@ -126,7 +193,7 @@ public class StorageSystem {
     }
 
     private static class LocalAccountDBHelper extends SQLiteOpenHelper {
-        public static final int DATABASE_VERSION = 0;
+        public static final int DATABASE_VERSION = 1;
 
         public LocalAccountDBHelper(@Nullable Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -150,7 +217,7 @@ public class StorageSystem {
         }
     }
 
-    private static class LocalAccountEntry {
+    public static class LocalAccountEntry {
         // DO NOT instantiate
         private LocalAccountEntry() {
         }
@@ -163,7 +230,7 @@ public class StorageSystem {
     }
 
     private static class SpotifyAccountDBHelper extends SQLiteOpenHelper {
-        public static final int DATABASE_VERSION = 0;
+        public static final int DATABASE_VERSION = 1;
 
         public SpotifyAccountDBHelper(@Nullable Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -192,7 +259,7 @@ public class StorageSystem {
         }
     }
 
-    private static class SpotifyAccountEntry {
+    public static class SpotifyAccountEntry {
         // DO NOT instantiate
         private SpotifyAccountEntry() {
         }
