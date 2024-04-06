@@ -5,27 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/dark_gray">
 
     <TextView
         android:id="@+id/appName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:fontFamily="@font/manrope_bold"
+        android:layout_margin="30dp"
+        android:fontFamily="@font/manrope_extrabold"
         android:text="@string/spotify_wrapped"
         android:textColor="@color/spotify_green"
-        android:textSize="48sp"
+        android:textSize="46sp"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/signupButton"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="30dp"
         android:background="@drawable/button_border"
         android:fontFamily="@font/manrope_bold"
         android:text="@string/sign_up"
+        android:textColor="@color/black"
         android:textSize="24sp"
         app:backgroundTint="@null" />
 
@@ -38,6 +40,7 @@
         android:fontFamily="@font/manrope_bold"
         android:text="@string/login"
         android:textSize="24sp"
+        android:textColor="@color/black"
         app:backgroundTint="@null" />
 
 </LinearLayout>
