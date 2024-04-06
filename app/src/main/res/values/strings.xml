@@ -10,6 +10,11 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
+    <!-- Strings used for menu screen -->
+    <string name="spotify_wrapped">Spotify Wrapped</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign up</string>
+
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
