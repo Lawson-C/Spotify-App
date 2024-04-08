@@ -51,4 +51,8 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="notificationsSettingsHeaderText">Notifications</string>
+    <string name="accountSettingsHeaderText">Account</string>
+    <string name="dataSettingsHeaderText">Data</string>
+    <string name="displayHeaderSettingsText">Display</string>
 </resources>
