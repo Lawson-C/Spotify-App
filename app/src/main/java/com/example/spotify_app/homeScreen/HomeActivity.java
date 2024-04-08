@@ -14,7 +14,6 @@ import com.google.android.material.navigation.NavigationView;
 
 public class HomeActivity extends AppCompatActivity {
 
-    DrawerLayout homeLayout;
     ActionBarDrawerToggle toggle;
 
     @Override
@@ -22,7 +21,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_screen);
 
-        homeLayout = (DrawerLayout) findViewById(R.id.homeLayout);
+        DrawerLayout homeLayout = findViewById(R.id.homeLayout);
         toggle = new ActionBarDrawerToggle(this, homeLayout, R.string.open, R.string.close);
         homeLayout.addDrawerListener(toggle);
         toggle.syncState();
@@ -30,7 +29,7 @@ public class HomeActivity extends AppCompatActivity {
         ActionBar sab = this.getSupportActionBar();
         sab.setDisplayHomeAsUpEnabled(true);
 
-        NavigationView nav  = (NavigationView)findViewById(R.id.homeMenu);
+        NavigationView nav  = findViewById(R.id.homeMenu);
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
