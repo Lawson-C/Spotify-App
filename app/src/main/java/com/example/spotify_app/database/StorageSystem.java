@@ -35,12 +35,12 @@ public class StorageSystem {
         SQLiteDatabase db = localDBHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(LocalAccountEntry.COLUMN_ID, id);
-        values.put(LocalAccountEntry.COLUMN_NAME, name);
-        values.put(LocalAccountEntry.COLUMN_PASSWORD, password);
-        values.put(LocalAccountEntry.COLUMN_SPOTIFY_ID, spotifyID);
+        values.put(LocalAccountDBHelper.LocalAccountEntry.COLUMN_ID, id);
+        values.put(LocalAccountDBHelper.LocalAccountEntry.COLUMN_NAME, name);
+        values.put(LocalAccountDBHelper.LocalAccountEntry.COLUMN_PASSWORD, password);
+        values.put(LocalAccountDBHelper.LocalAccountEntry.COLUMN_SPOTIFY_ID, spotifyID);
 
-        db.insert(LocalAccountEntry.TABLE_NAME, null, values);
+        db.insert(LocalAccountDBHelper.LocalAccountEntry.TABLE_NAME, null, values);
     }
 
     /*
@@ -53,13 +53,13 @@ public class StorageSystem {
         SQLiteDatabase db = localDBHelper.getReadableDatabase();
 
         Cursor cursor = db.query(
-                LocalAccountEntry.TABLE_NAME,
+                LocalAccountDBHelper.LocalAccountEntry.TABLE_NAME,
                 null,
                 requestField + " = ?",
                 new String[]{value},
                 null,
                 null,
-                LocalAccountEntry.COLUMN_ID + " DESC"
+                LocalAccountDBHelper.LocalAccountEntry.COLUMN_ID + " DESC"
         );
 
         cursor.moveToNext();
@@ -79,9 +79,8 @@ public class StorageSystem {
      */
     public static String[][] readLocalAccountValueArray(String requestField, String value, String[] responseField) {
         SQLiteDatabase db = localDBHelper.getReadableDatabase();
-
         Cursor cursor = db.query(
-                LocalAccountEntry.TABLE_NAME,
+                LocalAccountDBHelper.LocalAccountEntry.TABLE_NAME,
                 null,
                 requestField + " = ? ",
                 new String[]{value},
@@ -114,7 +113,7 @@ public class StorageSystem {
                 new String[]{"" + id},
                 null,
                 null,
-                LocalAccountEntry.COLUMN_ID + " DESC"
+                LocalAccountDBHelper.LocalAccountEntry.COLUMN_ID + " DESC"
         );
 
         cursor.moveToNext();
@@ -133,9 +132,9 @@ public class StorageSystem {
         content.put(field, value);
 
         db.update(
-                LocalAccountEntry.TABLE_NAME,
+                LocalAccountDBHelper.LocalAccountEntry.TABLE_NAME,
                 content,
-                LocalAccountEntry.COLUMN_ID + " = ?",
+                LocalAccountDBHelper.LocalAccountEntry.COLUMN_ID + " = ?",
                 new String[]{"" + id}
         );
     }
@@ -145,8 +144,8 @@ public class StorageSystem {
         SQLiteDatabase db = localDBHelper.getWritableDatabase();
 
         db.delete(
-                LocalAccountEntry.TABLE_NAME,
-                LocalAccountEntry.COLUMN_ID + " = ?",
+                LocalAccountDBHelper.LocalAccountEntry.TABLE_NAME,
+                LocalAccountDBHelper.LocalAccountEntry.COLUMN_ID + " = ?",
                 new String[]{"" + id}
         );
     }
@@ -156,17 +155,17 @@ public class StorageSystem {
         SQLiteDatabase db = spotifyDBHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(SpotifyAccountEntry.COLUMN_ID, id);
-        values.put(SpotifyAccountEntry.COLUMN_DISPLAY_NAME, name);
-        values.put(SpotifyAccountEntry.COLUMN_EMAIL, email);
-        values.put(SpotifyAccountEntry.COLUMN_SPOTIFY_URL, url);
-        values.put(SpotifyAccountEntry.COLUMN_HREF, href);
-        values.put(SpotifyAccountEntry.COLUMN_IMAGE_URL, image_url);
-        values.put(SpotifyAccountEntry.COLUMN_IMAGE_WIDTH, image_width);
-        values.put(SpotifyAccountEntry.COLUMN_IMAGE_HEIGHT, image_height);
-        values.put(SpotifyAccountEntry.COLUMN_URI, uri);
+        values.put(SpotifyAccountDBHelper.SpotifyAccountEntry.COLUMN_ID, id);
+        values.put(SpotifyAccountDBHelper.SpotifyAccountEntry.COLUMN_DISPLAY_NAME, name);
+        values.put(SpotifyAccountDBHelper.SpotifyAccountEntry.COLUMN_EMAIL, email);
+        values.put(SpotifyAccountDBHelper.SpotifyAccountEntry.COLUMN_SPOTIFY_URL, url);
+        values.put(SpotifyAccountDBHelper.SpotifyAccountEntry.COLUMN_HREF, href);
+        values.put(SpotifyAccountDBHelper.SpotifyAccountEntry.COLUMN_IMAGE_URL, image_url);
+        values.put(SpotifyAccountDBHelper.SpotifyAccountEntry.COLUMN_IMAGE_WIDTH, image_width);
+        values.put(SpotifyAccountDBHelper.SpotifyAccountEntry.COLUMN_IMAGE_HEIGHT, image_height);
+        values.put(SpotifyAccountDBHelper.SpotifyAccountEntry.COLUMN_URI, uri);
 
-        db.insert(SpotifyAccountEntry.TABLE_NAME, null, values);
+        db.insert(SpotifyAccountDBHelper.SpotifyAccountEntry.TABLE_NAME, null, values);
     }
 
     // SpotifyAccount Retrieve
@@ -174,13 +173,13 @@ public class StorageSystem {
         SQLiteDatabase db = spotifyDBHelper.getReadableDatabase();
 
         Cursor cursor = db.query(
-                SpotifyAccountEntry.TABLE_NAME,
+                SpotifyAccountDBHelper.SpotifyAccountEntry.TABLE_NAME,
                 null,
-                SpotifyAccountEntry.COLUMN_ID + " = ?",
+                SpotifyAccountDBHelper.SpotifyAccountEntry.COLUMN_ID + " = ?",
                 new String[]{"" + id},
                 null,
                 null,
-                SpotifyAccountEntry.COLUMN_ID + " DESC"
+                SpotifyAccountDBHelper.SpotifyAccountEntry.COLUMN_ID + " DESC"
         );
 
         cursor.moveToNext();
@@ -190,7 +189,7 @@ public class StorageSystem {
 
         return value;
     }
-
+  
     private static class LocalAccountDBHelper extends SQLiteOpenHelper {
         public static final int DATABASE_VERSION = 1;
 
