@@ -1,6 +1,7 @@
 package com.example.spotify_app.ui;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,12 +12,16 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.example.spotify_app.MainActivity;
 import com.example.spotify_app.R;
+
 
 public class SignUpActivity extends AppCompatActivity {
     EditText username;
     EditText password;
     Button signUpButton;
+
+    Button backButton;
     CardView card;
 
     EditText passwordConfirm;
@@ -33,6 +38,8 @@ public class SignUpActivity extends AppCompatActivity {
         signUpButton = findViewById(R.id.signUpButton);
         passwordConfirm = findViewById(R.id.passwordConfirm);
 
+        backButton.setOnClickListener(v -> openMainActivity());
+
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,6 +54,11 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void openMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
 }
