@@ -31,6 +31,8 @@ package com.example.ourspotifyapp.wrappedDisplays;
 import android.os.Bundle;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -128,6 +130,8 @@ public class TopTracks extends AppCompatActivity {
         topGenres.add(key3);
         topGenres.add(key4);
         topGenres.add(key5);
+
+        Log.d("top genre tag------", topGenres.toString());
 
     }
 

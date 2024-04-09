@@ -13,6 +13,8 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.spotify.sdk.android.auth.AuthorizationClient;
 import com.spotify.sdk.android.auth.AuthorizationRequest;
 import com.spotify.sdk.android.auth.AuthorizationResponse;
@@ -22,8 +24,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import com.example.ourspotifyapp.R;
 
@@ -195,7 +200,10 @@ public class StartingWrappedScreen extends AppCompatActivity {
                         String artistId = item.getString("id");
 
                         String genres = item.getString("genres");
-                        String[] genreArray = genres.split(",");
+                        Type listType = new TypeToken<List<String>>() {}.getType();
+                        List<String> genreList = new Gson().fromJson(genres, listType);
+                        String[] genreArray = Arrays.copyOf(genreList.toArray(), genreList.toArray().length, String[].class);
+                        Log.d("-----------------%$%$%%$", Arrays.toString(genreArray));
 
                         artistToId.put(artistName, artistId); // adds an artist name mapped to their ids to put in database
                         artistNames.add(artistName + "\n");
@@ -204,11 +212,12 @@ public class StartingWrappedScreen extends AppCompatActivity {
                         // if the genre is found in the hashmap, then the key is incremented by 1 (will change weight later, if not then it is set to 1)
                         for (int x = 0; x < genreArray.length; x++) {
                             if (genreCount.containsKey(genreArray[x])) {
-                                int currCount = Integer.parseInt(genreArray[x]);
+                                Log.d("tag---------", genreArray[x]);
+                                int currCount = Integer.parseInt(genreCount.get(genreArray[x]));
                                 currCount++; // This will be the place that we would change the weight of the genres when we add them
                                 genreCount.put(genreArray[x], String.valueOf(currCount)); // restores the value as an int
                             } else {
-                                genreCount.put(genreArray[i], "1"); // where the initial value of a genre is created if not found before
+                                genreCount.put(genreArray[x], "1"); // where the initial value of a genre is created if not found before
                             }
                         }
                     }

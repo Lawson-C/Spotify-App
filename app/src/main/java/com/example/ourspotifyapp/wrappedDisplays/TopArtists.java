@@ -74,7 +74,7 @@ public class TopArtists extends AppCompatActivity {
         getTracksButton.setOnClickListener((v) -> {
             getTopTracks(StartingWrappedScreen.getDesiredTimeFrame());
 
-//            startActivity(new Intent(TopArtists.this, TopTracks.class));
+            startActivity(new Intent(TopArtists.this, TopTracks.class));
         });
     }
 
