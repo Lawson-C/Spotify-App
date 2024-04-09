@@ -15,6 +15,7 @@ import com.example.ourspotifyapp.R;
 import com.example.ourspotifyapp.wrappedDisplays.StartingWrappedScreen;
 import com.example.ourspotifyapp.MainActivity;
 import com.example.ourspotifyapp.database.StorageSystem;
+import com.examplle.ourspotifyapp.homeScreen.HomeActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -48,7 +49,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
                if (user.equals("user") && pass.equals("pass")) {
-                   Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
+                   Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                   startActivity(intent);
                } else {
                    Toast.makeText(LoginActivity.this, "Login Failed!", Toast.LENGTH_SHORT).show();
                }
