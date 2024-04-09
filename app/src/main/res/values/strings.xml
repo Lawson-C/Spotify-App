@@ -57,4 +57,13 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="notificationsSettingsHeaderText">Notifications</string>
+    <string name="accountSettingsHeaderText">Account</string>
+    <string name="dataSettingsHeaderText">Data</string>
+    <string name="displayHeaderSettingsText">Display</string>
+    <string name="dark_mode_switchText">Dark Mode</string>
+    <string name="wrappedSettingsHeaderText">Wrapped</string>
+    <string name="change_email">Change Email</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="back_text">Back</string>
 </resources>
