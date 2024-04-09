@@ -55,4 +55,8 @@
     <string name="accountSettingsHeaderText">Account</string>
     <string name="dataSettingsHeaderText">Data</string>
     <string name="displayHeaderSettingsText">Display</string>
+    <string name="dark_mode_switchText">Dark Mode</string>
+    <string name="wrappedSettingsHeaderText">Wrapped</string>
+    <string name="change_email">Change Email</string>
+    <string name="delete_account">Delete Account</string>
 </resources>
