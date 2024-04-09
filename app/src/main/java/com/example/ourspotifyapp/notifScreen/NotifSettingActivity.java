@@ -1,10 +1,10 @@
-package com.example.spotify_app.notifScreen;
+package com.example.ourspotifyapp.notifScreen;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.spotify_app.R;
+import com.example.ourspotifyapp.R;
 
 public class NotifSettingActivity extends AppCompatActivity {
     @Override

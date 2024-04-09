@@ -10,15 +10,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-<<<<<<< HEAD:app/src/main/java/com/example/ourspotifyapp/loginScreen/LoginActivity.java
 import com.example.ourspotifyapp.R;
 import com.example.ourspotifyapp.wrappedDisplays.StartingWrappedScreen;
-=======
-import com.example.spotify_app.MainActivity;
-import com.example.spotify_app.database.StorageSystem;
-
-import com.example.spotify_app.R;
->>>>>>> main:app/src/main/java/com/example/spotify_app/loginScreen/LoginActivity.java
+import com.example.ourspotifyapp.MainActivity;
+import com.example.ourspotifyapp.database.StorageSystem;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -58,7 +53,6 @@ public class LoginActivity extends AppCompatActivity {
            }
         });
 
-<<<<<<< HEAD:app/src/main/java/com/example/ourspotifyapp/loginScreen/LoginActivity.java
         temporaryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,7 +65,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-=======
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,6 +73,5 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
->>>>>>> main:app/src/main/java/com/example/spotify_app/loginScreen/LoginActivity.java
     }
 }

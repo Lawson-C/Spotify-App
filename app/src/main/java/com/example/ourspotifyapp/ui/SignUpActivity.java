@@ -1,4 +1,4 @@
-package com.example.spotify_app.ui;
+package com.example.ourspotifyapp.ui;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,8 +12,8 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import com.example.spotify_app.MainActivity;
-import com.example.spotify_app.R;
+import com.example.ourspotifyapp.MainActivity;
+import com.example.ourspotifyapp.R;
 
 
 public class SignUpActivity extends AppCompatActivity {
