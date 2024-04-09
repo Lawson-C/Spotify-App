@@ -1,5 +1,6 @@
 package com.example.ourspotifyapp.wrappedDisplays;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.fragment.DialogFragmentNavigatorDestinationBuilder;
 

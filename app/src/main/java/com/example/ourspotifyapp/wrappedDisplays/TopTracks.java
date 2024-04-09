@@ -30,6 +30,8 @@ package com.example.ourspotifyapp.wrappedDisplays;
 
 import android.os.Bundle;
 import com.google.android.material.snackbar.Snackbar;
+
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
