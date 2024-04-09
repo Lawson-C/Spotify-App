@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 
 public class StorageSystem {
     public static final String DATABASE_NAME = "AppData.db";
+    public static int DATABASE_VERSION = 1;
 
     public static StorageSystem instance;
     private static SpotifyAccountDBHelper spotifyDBHelper;
