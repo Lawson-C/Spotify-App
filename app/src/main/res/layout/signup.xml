@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/toolst"
+    xmlns:tools2="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black">
@@ -19,20 +20,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:cardBackgroundColor="@color/dark_gray">
 
-
-    <!-- <androidx.cardview.widget.CardView
-        android:layout_width="300dp"
-        android:layout_height="500dp"
-        android:layout_margin="30dp"
-        android:background="@drawable/edit_text"
-        android:gravity="center"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="30dp"
-        app:cardElevation="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">> -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -171,17 +158,32 @@
                     app:backgroundTint="@null"
                     android:background="@drawable/button_border"
                     android:textColor="@color/black"/>
+
+
+
+
             </LinearLayout>
-
-
-
-
-
 
         </LinearLayout>
 
+
+
     </com.google.android.material.card.MaterialCardView>
 
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:background="@drawable/button_border"
+        android:text="Back"
+        android:textColor="@color/black"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        android:layout_marginStart="-400dp"
+        android:layout_marginBottom="30dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
