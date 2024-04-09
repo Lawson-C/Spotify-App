@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SpotifyApp"
         tools:targetApi="31">
+<<<<<<< HEAD
         <activity
             android:name=".wrappedDisplays.TopTracks"
             android:exported="true">
@@ -24,8 +25,10 @@
                     android:scheme="com.example.ourspotifyapp" />
             </intent-filter>
         </activity>
+=======
+>>>>>>> main
         <activity
-            android:name=".loginScreen.LoginActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.SpotifyApp">
@@ -40,6 +43,7 @@
             android:exported="true">
             <intent-filter>
 
+<<<<<<< HEAD
                 <data
                     android:host="auth"
                     android:scheme="com.example.ourspotifyapp" />
@@ -55,6 +59,18 @@
                     android:scheme="com.example.ourspotifyapp" />
             </intent-filter>
         </activity>
+=======
+        <activity
+            android:name=".loginScreen.LoginActivity"
+            android:exported="true"
+            android:theme="@style/Base.Theme.SpotifyApp" />
+
+        <activity
+            android:name=".ui.SignUpActivity"
+            android:exported="true"
+            android:theme="@style/Base.Theme.SpotifyApp" />
+
+>>>>>>> main
     </application>
 
 </manifest>

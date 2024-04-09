@@ -10,14 +10,22 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+<<<<<<< HEAD:app/src/main/java/com/example/ourspotifyapp/loginScreen/LoginActivity.java
 import com.example.ourspotifyapp.R;
 import com.example.ourspotifyapp.wrappedDisplays.StartingWrappedScreen;
+=======
+import com.example.spotify_app.MainActivity;
+import com.example.spotify_app.database.StorageSystem;
+
+import com.example.spotify_app.R;
+>>>>>>> main:app/src/main/java/com/example/spotify_app/loginScreen/LoginActivity.java
 
 public class LoginActivity extends AppCompatActivity {
 
     EditText username;
     EditText password;
     Button loginButton;
+    Button backButton;
     CardView card;
 
     Button temporaryBtn; // get rid of this later
@@ -30,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         username = findViewById(R.id.usernameDialog);
         password = findViewById(R.id.passwordDialog);
         loginButton = findViewById(R.id.loginButton);
+        backButton = findViewById(R.id.backButton);
         card = findViewById(R.id.loginCard);
         card.setBackgroundResource(R.drawable.card_background);
 
@@ -49,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
            }
         });
 
+<<<<<<< HEAD:app/src/main/java/com/example/ourspotifyapp/loginScreen/LoginActivity.java
         temporaryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,5 +71,15 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+=======
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+>>>>>>> main:app/src/main/java/com/example/spotify_app/loginScreen/LoginActivity.java
     }
 }
