@@ -127,6 +127,16 @@
                     android:background="@drawable/button_border"
                     android:text="@string/login_text"
                     android:textColor="@color/black"/>
+
+                <Button
+                    android:id="@+id/temp_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    app:backgroundTint="@null"
+                    android:background="@drawable/button_border"
+                    android:text="Take to wrapped"
+                    android:textColor="@color/black"/>
             </LinearLayout>
 
             <LinearLayout

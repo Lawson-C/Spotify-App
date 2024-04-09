@@ -13,6 +13,18 @@
         android:theme="@style/Theme.SpotifyApp"
         tools:targetApi="31">
         <activity
+            android:name=".wrappedDisplays.TopTracks"
+            android:exported="true">
+            <intent-filter>
+
+                <!-- // Match the scheme and host of the redirect URI -->
+                <!-- // Must be the same in MainAcitivity, Gradle, and Spotify Dashboard! -->
+                <data
+                    android:host="auth"
+                    android:scheme="com.example.ourspotifyapp" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/title_activity_login"
@@ -30,7 +42,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".wrappedDisplays.StartingWrappedScreen"
+            android:exported="true">
+            <intent-filter>
 
+                <data
+                    android:host="auth"
+                    android:scheme="com.example.ourspotifyapp" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".wrappedDisplays.TopArtists"
+            android:exported="true">
+            <intent-filter>
+                >
+                <data
+                    android:host="auth"
+                    android:scheme="com.example.ourspotifyapp" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".loginScreen.LoginActivity"
             android:exported="true"

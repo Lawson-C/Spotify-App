@@ -1,4 +1,4 @@
-package com.example.spotify_app.database;
+package com.example.ourspotifyapp.database;
 
 import android.content.ContentValues;
 import android.content.Context;

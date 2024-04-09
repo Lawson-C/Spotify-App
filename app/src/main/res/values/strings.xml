@@ -57,6 +57,9 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="token_btn">Profile</string>
+    <string name="login_btn">Account Login</string>
+    <string name="confirm_acess">Confirm Acess</string>
     <string name="notificationsSettingsHeaderText">Notifications</string>
     <string name="accountSettingsHeaderText">Account</string>
     <string name="dataSettingsHeaderText">Data</string>

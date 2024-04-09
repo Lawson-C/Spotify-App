@@ -1,4 +1,4 @@
-package com.example.spotify_app.loginScreen;
+package com.example.ourspotifyapp.loginScreen;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,14 +7,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import com.example.spotify_app.MainActivity;
-import com.example.spotify_app.database.StorageSystem;
-import com.example.spotify_app.homeScreen.HomeActivity;
-
-import com.example.spotify_app.R;
+import com.example.ourspotifyapp.R;
+import com.example.ourspotifyapp.wrappedDisplays.StartingWrappedScreen;
+import com.example.ourspotifyapp.MainActivity;
+import com.example.ourspotifyapp.database.StorageSystem;
+import com.examplle.ourspotifyapp.homeScreen.HomeActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -24,9 +25,12 @@ public class LoginActivity extends AppCompatActivity {
     Button backButton;
     CardView card;
 
+    Button temporaryBtn; // get rid of this later
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.login_screen);
 
         username = findViewById(R.id.usernameDialog);
@@ -36,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         card = findViewById(R.id.loginCard);
         card.setBackgroundResource(R.drawable.card_background);
 
+        temporaryBtn = findViewById(R.id.temp_button);
         loginButton.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
@@ -51,6 +56,18 @@ public class LoginActivity extends AppCompatActivity {
                }
            }
         });
+
+        temporaryBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, StartingWrappedScreen.class));
+            }
+        });
+
+
+
+
+
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
