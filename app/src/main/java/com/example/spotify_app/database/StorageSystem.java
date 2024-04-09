@@ -1,27 +1,24 @@
 package com.example.spotify_app.database;
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.example.spotify_app.loginScreen.LoginActivity;
-
-import java.util.Locale;
+import java.io.File;
 
 public class StorageSystem {
-    public static final String DATABASE_NAME = "/data/AppData.db";
+    public static final String DATABASE_NAME = "AppData.sqlite";
 
     private static StorageSystem instance;
     private static SpotifyAccountDBHelper spotifyDBHelper;
     private static LocalAccountDBHelper localDBHelper;
 
     private StorageSystem(@Nullable Context context) {
+        SQLiteDatabase db = context.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);
         spotifyDBHelper = new SpotifyAccountDBHelper(context);
         localDBHelper = new LocalAccountDBHelper(context);
     }
