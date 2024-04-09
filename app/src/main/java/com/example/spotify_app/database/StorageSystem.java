@@ -182,6 +182,17 @@ public class StorageSystem extends SQLiteOpenHelper {
         database.insert(LocalAccountEntry.TABLE_NAME, null, values);
     }
 
+    public static void writeWrappedArtist(String name, int accountID, int date, String imageURL) {
+        ContentValues values = new ContentValues();
+
+        values.put(WrappedArtistEntry.COLUMN_NAME, name);
+        values.put(WrappedArtistEntry.COLUMN_ACCOUNT_ID, accountID);
+        values.put(WrappedArtistEntry.COLUMN_DATE, date);
+        values.put(WrappedArtistEntry.COLUMN_IMAGE_REF, imageURL);
+
+        database.insert(LocalAccountEntry.TABLE_NAME, null, values);
+    }
+
     // Wrapped Retrieve
     public static String[] readWrappedTable(String table, String fieldToMatch, String valueToMatch, String fieldToReceive) {
         Cursor cursor = database.query(
@@ -205,7 +216,7 @@ public class StorageSystem extends SQLiteOpenHelper {
     }
 
     // Wrapped Update
-    public static void readWrappedTable(String table, String fieldToMatch, String valueToMatch, String fieldToChange, String valueToSet) {
+    public static void updateWrappedTable(String table, String fieldToMatch, String valueToMatch, String fieldToChange, String valueToSet) {
         ContentValues content = new ContentValues();
 
         content.put(fieldToChange, valueToSet);
