@@ -1,13 +1,14 @@
-package com.example.spotify_app;
+package com.example.ourspotifyapp;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.spotify_app.loginScreen.LoginActivity;
-import com.example.spotify_app.ui.SignUpActivity;
+import com.example.ourspotifyapp.loginScreen.LoginActivity;
+import com.example.ourspotifyapp.ui.SignUpActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.menu);
         loginButton = findViewById(R.id.loginButton);
         signupButton = findViewById(R.id.signupButton);

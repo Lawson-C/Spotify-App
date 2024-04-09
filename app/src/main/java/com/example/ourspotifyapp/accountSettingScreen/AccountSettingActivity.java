@@ -1,10 +1,10 @@
-package com.example.spotify_app.accountSettingScreen;
+package com.example.ourspotifyapp.accountSettingScreen;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.spotify_app.R;
+import com.example.ourspotifyapp.R;
 
 public class AccountSettingActivity extends AppCompatActivity {
     @Override

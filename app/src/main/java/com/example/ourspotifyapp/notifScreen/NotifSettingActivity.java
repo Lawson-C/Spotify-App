@@ -1,15 +1,15 @@
-package com.example.spotify_app.wrappedSettingScreen;
+package com.example.ourspotifyapp.notifScreen;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.spotify_app.R;
+import com.example.ourspotifyapp.R;
 
-public class WrappedSettingActivity extends AppCompatActivity {
+public class NotifSettingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.displaysettings);
+        setContentView(R.layout.notifsettings);
     }
 }
