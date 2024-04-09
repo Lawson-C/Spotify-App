@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 
 public class StorageSystem {
     public static final String DATABASE_NAME = "AppData.sqlite";
@@ -15,7 +15,7 @@ public class StorageSystem {
     private static SpotifyAccountDBHelper spotifyDBHelper;
     private static LocalAccountDBHelper localDBHelper;
 
-    private StorageSystem(@Nullable Context context) {
+    private StorageSystem(@NonNull Context context) {
         SQLiteDatabase db = context.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);
         spotifyDBHelper = new SpotifyAccountDBHelper(context);
         localDBHelper = new LocalAccountDBHelper(context);
@@ -24,7 +24,7 @@ public class StorageSystem {
     /*
      * StorageSystem must be initialized at startup
      */
-    public static StorageSystem init(Context context) {
+    public static StorageSystem init(@NonNull Context context) {
         return instance == null ? new StorageSystem(context) : instance;
     }
 
