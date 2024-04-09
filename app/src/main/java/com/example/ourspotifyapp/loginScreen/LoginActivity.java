@@ -15,7 +15,7 @@ import com.example.ourspotifyapp.R;
 import com.example.ourspotifyapp.wrappedDisplays.StartingWrappedScreen;
 import com.example.ourspotifyapp.MainActivity;
 import com.example.ourspotifyapp.database.StorageSystem;
-import com.examplle.ourspotifyapp.homeScreen.HomeActivity;
+import com.example.ourspotifyapp.homeScreen.HomeActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -30,7 +30,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.login_screen);
 
         username = findViewById(R.id.usernameDialog);

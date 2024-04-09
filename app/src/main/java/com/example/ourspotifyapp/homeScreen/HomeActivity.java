@@ -1,4 +1,4 @@
-package com.example.spotify_app.homeScreen;
+package com.example.ourspotifyapp.homeScreen;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -9,7 +9,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.example.spotify_app.R;
+import com.example.ourspotifyapp.R;
 import com.google.android.material.navigation.NavigationView;
 
 public class HomeActivity extends AppCompatActivity {

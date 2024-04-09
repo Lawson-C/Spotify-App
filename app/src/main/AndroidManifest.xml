@@ -24,18 +24,12 @@
                     android:scheme="com.example.ourspotifyapp" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/title_activity_login"
-            android:theme="@style/Theme.SpotifyApp">
-        </activity>
-
-        <activity
-            android:name=".homeScreen.HomeActivity"
-            android:exported="true"
-            android:label="@string/title_activity_home"
-            android:theme="@style/Theme.SpotifyApp">
+            android:label="@string/title_activity_main"
+            android:theme="@style/Base.Theme.SpotifyApp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -71,6 +65,11 @@
             android:name=".ui.SignUpActivity"
             android:exported="true"
             android:theme="@style/Base.Theme.SpotifyApp" />
+
+        <activity
+            android:name=".homeScreen.HomeActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SpotifyApp" />
 
     </application>
 
