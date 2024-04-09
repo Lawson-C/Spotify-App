@@ -59,4 +59,5 @@
     <string name="wrappedSettingsHeaderText">Wrapped</string>
     <string name="change_email">Change Email</string>
     <string name="delete_account">Delete Account</string>
+    <string name="back_text">Back</string>
 </resources>
