@@ -1,0 +1,105 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/starting_wrapped_screen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".wrappedDisplays.StartingWrappedScreen">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="243dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:visibility="gone"
+            tools:text="Select Wrapped Time-Frame" />
+
+        <Button
+            android:id="@+id/accept_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Grant Account Access" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select Time Frame for Wrapped"/>
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:id="@+id/short_time_frame"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="4 Weeks"
+                    android:textSize="10sp" />
+
+                <RadioButton
+                    android:id="@+id/medium_time_frame"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="6 Months"
+                    android:textSize="10sp" />
+
+                <RadioButton
+                    android:id="@+id/long_time_frame"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="1 Year"
+                    android:textSize="10sp" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/submitted_time_frame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Confirm Selection"/>
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="469dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/get_wrapped_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="300dp"
+                android:layout_weight="1"
+                android:text="Get Spotify Wrapped"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                tools:layout_editor_absoluteX="8dp" />-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+

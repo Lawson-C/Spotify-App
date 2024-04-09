@@ -12,35 +12,79 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SpotifyApp"
         tools:targetApi="31" >
+<!--        <activity-->
+<!--            android:name=".wrappedDisplays.TopTracks"-->
+<!--            android:exported="false"-->
+<!--            android:theme="@style/Theme.SpotifyApp" />-->
+        <!-- <activity -->
+        <!-- android:name=".wrappedDisplays.StartingWrappedScreen" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".loginScreen.LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_main"
-            android:theme="@style/Theme.SpotifyApp">
+            android:theme="@style/Theme.SpotifyApp" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity> <!-- Keep these, but I need to figure out how to wrap the android:host and scheme here -->
+        <!-- <activity android:name=".wrappedDisplays.TopTracksScreen"/> -->
+        <!-- <activity android:name=".wrappedDisplays.TopArtistsScreen"/> -->
+        <!-- <activity android:name=".wrappedDisplays.otherStatsScreen"/> -->
+        <activity
+            android:name=".wrappedDisplays.StartingWrappedScreen"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+
+                <!-- // Match the scheme and host of the redirect URI -->
+                <!-- // Must be the same in MainAcitivity, Gradle, and Spotify Dashboard! -->
+                <data
+                    android:host="auth"
+                    android:scheme="com.example.ourspotifyapp" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".wrappedDisplays.TopArtists"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+
+                <!-- // Match the scheme and host of the redirect URI -->
+                <!-- // Must be the same in MainAcitivity, Gradle, and Spotify Dashboard! -->
+                <data
+                    android:host="auth"
+                    android:scheme="com.example.ourspotifyapp" />
             </intent-filter>
         </activity>
 
         <activity
-            android:name=".spotify_profile.SpotifyRequests"
-            android:exported="true">
-
+            android:name=".wrappedDisplays.TopTracks"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
             <intent-filter>
-<!--                // Match the scheme and host of the redirect URI-->
-<!--                // Must be the same in MainAcitivity, Gradle, and Spotify Dashboard!-->
-                <data android:host="auth" android:scheme="com.example.Group4Spotify-App"/>
+
+                <!-- // Match the scheme and host of the redirect URI -->
+                <!-- // Must be the same in MainAcitivity, Gradle, and Spotify Dashboard! -->
+                <data
+                    android:host="auth"
+                    android:scheme="com.example.ourspotifyapp" />
             </intent-filter>
-
         </activity>
-
     </application>
 
 </manifest>
