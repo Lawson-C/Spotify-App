@@ -43,6 +43,8 @@ public class StartingWrappedScreen extends AppCompatActivity {
     String dataBaseToken;
     String dataBaseCode;
 
+    static Map<String, String> genreCount = new HashMap<>();
+
     private final OkHttpClient mOkHttpClient = new OkHttpClient();
     private static boolean responseReceived = false;
     private String mAccessToken, mAccessCode;
@@ -88,10 +90,6 @@ public class StartingWrappedScreen extends AppCompatActivity {
         time_frame_button1.setOnClickListener((v) -> {
 
         });
-
-        // Make something to retrieve the value of the edit text/radio button where the user picks a time frame
-//        desired_time_frame = input from user; this is where this input will be stored
-//        time_frame_selected = true;
 
         getWrappedBtn.setOnClickListener((v) -> {
             if (!time_frame_selected) {
@@ -163,11 +161,9 @@ public class StartingWrappedScreen extends AppCompatActivity {
         }
 
         final Request request = new Request.Builder()
-                .url(String.format("https://api.spotify.com/v1/me/top/artists?limit=5&time_range=%s", specified_time_range))
+                .url(String.format("https://api.spotify.com/v1/me/top/artists?limit=5&time_range=%s", specified_time_range)) // CHANGE THE LIMIT IF WE WANT MORE THAN 5 PIECES OF DATA
                 .addHeader("Authorization", "Bearer " + mAccessToken)
                 .build();
-        Log.d("168: $$$$$$$$$$$$$$$$$$", "request made Yay");
-        Log.d("this is the request", String.valueOf(request));
 
         cancelCall();
         mCall = mOkHttpClient.newCall(request);
@@ -189,9 +185,6 @@ public class StartingWrappedScreen extends AppCompatActivity {
 
                 try {
                     final String responseData = response.body().string(); // added this to try to parse
-                    Log.d("190 IMPORTANT", responseData);
-                    Log.d("IMPORTANT", responseData);
-                    Log.d("IMPORTANT", responseData);
                     JSONObject jsonObject = new JSONObject(responseData);
                     JSONArray items = jsonObject.getJSONArray("items");
                     ArrayList<String> artistNames = new ArrayList<>();
@@ -200,9 +193,24 @@ public class StartingWrappedScreen extends AppCompatActivity {
                         JSONObject item = items.getJSONObject(i);
                         String artistName = item.getString("name");
                         String artistId = item.getString("id");
+
+                        String genres = item.getString("genres");
+                        String[] genreArray = genres.split(",");
+
                         artistToId.put(artistName, artistId); // adds an artist name mapped to their ids to put in database
                         artistNames.add(artistName + "\n");
 
+                        // This is where I calculate how how often the genres are found
+                        // if the genre is found in the hashmap, then the key is incremented by 1 (will change weight later, if not then it is set to 1)
+                        for (int x = 0; x < genreArray.length; x++) {
+                            if (genreCount.containsKey(genreArray[x])) {
+                                int currCount = Integer.parseInt(genreArray[x]);
+                                currCount++; // This will be the place that we would change the weight of the genres when we add them
+                                genreCount.put(genreArray[x], String.valueOf(currCount)); // restores the value as an int
+                            } else {
+                                genreCount.put(genreArray[i], "1"); // where the initial value of a genre is created if not found before
+                            }
+                        }
                     }
                     Map artistDataBaseMap = new HashMap<String, String>();
                     artistDataBaseMap = artistToId;
@@ -275,5 +283,8 @@ public class StartingWrappedScreen extends AppCompatActivity {
     }
     public static String getDesiredTimeFrame() {
         return desired_time_frame;
+    }
+    public static Map<String, String> getGenreCount() {
+        return genreCount;
     }
 }
