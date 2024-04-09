@@ -12,6 +12,7 @@ import java.io.File;
 
 public class StorageSystem {
     public static final String DATABASE_NAME = "AppData.sqlite";
+    public static final int DATABASE_VERSION = 1;
 
     private static StorageSystem instance;
     private static SpotifyAccountDBHelper spotifyDBHelper;
