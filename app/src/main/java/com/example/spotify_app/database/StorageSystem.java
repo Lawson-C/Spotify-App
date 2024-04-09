@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.NonNull;
 
+import com.example.spotify_app.database.database_entries.LocalAccountEntry;
+import com.example.spotify_app.database.database_entries.SpotifyAccountEntry;
+
 public class StorageSystem {
     public static final String DATABASE_NAME = "AppData.sqlite";
     public static final int DATABASE_VERSION = 1;
@@ -33,12 +36,12 @@ public class StorageSystem {
         SQLiteDatabase db = localDBHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(LocalAccountDBHelper.LocalAccountEntry.COLUMN_ID, id);
-        values.put(LocalAccountDBHelper.LocalAccountEntry.COLUMN_NAME, name);
-        values.put(LocalAccountDBHelper.LocalAccountEntry.COLUMN_PASSWORD, password);
-        values.put(LocalAccountDBHelper.LocalAccountEntry.COLUMN_SPOTIFY_ID, spotifyID);
+        values.put(LocalAccountEntry.COLUMN_ID, id);
+        values.put(LocalAccountEntry.COLUMN_NAME, name);
+        values.put(LocalAccountEntry.COLUMN_PASSWORD, password);
+        values.put(LocalAccountEntry.COLUMN_SPOTIFY_ID, spotifyID);
 
-        db.insert(LocalAccountDBHelper.LocalAccountEntry.TABLE_NAME, null, values);
+        db.insert(LocalAccountEntry.TABLE_NAME, null, values);
     }
 
     /*
@@ -51,13 +54,13 @@ public class StorageSystem {
         SQLiteDatabase db = localDBHelper.getReadableDatabase();
 
         Cursor cursor = db.query(
-                LocalAccountDBHelper.LocalAccountEntry.TABLE_NAME,
+                LocalAccountEntry.TABLE_NAME,
                 null,
                 requestField + " = ?",
                 new String[]{value},
                 null,
                 null,
-                LocalAccountDBHelper.LocalAccountEntry.COLUMN_ID + " DESC"
+                LocalAccountEntry.COLUMN_ID + " DESC"
         );
 
         cursor.moveToNext();
@@ -79,13 +82,13 @@ public class StorageSystem {
         SQLiteDatabase db = localDBHelper.getReadableDatabase();
 
         Cursor cursor = db.query(
-                LocalAccountDBHelper.LocalAccountEntry.TABLE_NAME,
+                LocalAccountEntry.TABLE_NAME,
                 null,
                 requestField + " = ? ",
                 new String[]{value},
                 null,
                 null,
-                LocalAccountDBHelper.LocalAccountEntry.COLUMN_ID + " DESC"
+                LocalAccountEntry.COLUMN_ID + " DESC"
         );
 
         String[][] responseValues = new String[responseField.length][];
@@ -106,13 +109,13 @@ public class StorageSystem {
         SQLiteDatabase db = localDBHelper.getReadableDatabase();
 
         Cursor cursor = db.query(
-                LocalAccountDBHelper.LocalAccountEntry.TABLE_NAME,
+                LocalAccountEntry.TABLE_NAME,
                 null,
-                LocalAccountDBHelper.LocalAccountEntry.COLUMN_ID + " = ?",
+                LocalAccountEntry.COLUMN_ID + " = ?",
                 new String[]{"" + id},
                 null,
                 null,
-                LocalAccountDBHelper.LocalAccountEntry.COLUMN_ID + " DESC"
+                LocalAccountEntry.COLUMN_ID + " DESC"
         );
 
         cursor.moveToNext();
@@ -131,9 +134,9 @@ public class StorageSystem {
         content.put(field, value);
 
         db.update(
-                LocalAccountDBHelper.LocalAccountEntry.TABLE_NAME,
+                LocalAccountEntry.TABLE_NAME,
                 content,
-                LocalAccountDBHelper.LocalAccountEntry.COLUMN_ID + " = ?",
+                LocalAccountEntry.COLUMN_ID + " = ?",
                 new String[]{"" + id}
         );
     }
@@ -143,8 +146,8 @@ public class StorageSystem {
         SQLiteDatabase db = localDBHelper.getWritableDatabase();
 
         db.delete(
-                LocalAccountDBHelper.LocalAccountEntry.TABLE_NAME,
-                LocalAccountDBHelper.LocalAccountEntry.COLUMN_ID + " = ?",
+                LocalAccountEntry.TABLE_NAME,
+                LocalAccountEntry.COLUMN_ID + " = ?",
                 new String[]{"" + id}
         );
     }
@@ -154,17 +157,17 @@ public class StorageSystem {
         SQLiteDatabase db = spotifyDBHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(SpotifyAccountDBHelper.SpotifyAccountEntry.COLUMN_ID, id);
-        values.put(SpotifyAccountDBHelper.SpotifyAccountEntry.COLUMN_DISPLAY_NAME, name);
-        values.put(SpotifyAccountDBHelper.SpotifyAccountEntry.COLUMN_EMAIL, email);
-        values.put(SpotifyAccountDBHelper.SpotifyAccountEntry.COLUMN_SPOTIFY_URL, url);
-        values.put(SpotifyAccountDBHelper.SpotifyAccountEntry.COLUMN_HREF, href);
-        values.put(SpotifyAccountDBHelper.SpotifyAccountEntry.COLUMN_IMAGE_URL, image_url);
-        values.put(SpotifyAccountDBHelper.SpotifyAccountEntry.COLUMN_IMAGE_WIDTH, image_width);
-        values.put(SpotifyAccountDBHelper.SpotifyAccountEntry.COLUMN_IMAGE_HEIGHT, image_height);
-        values.put(SpotifyAccountDBHelper.SpotifyAccountEntry.COLUMN_URI, uri);
+        values.put(SpotifyAccountEntry.COLUMN_ID, id);
+        values.put(SpotifyAccountEntry.COLUMN_DISPLAY_NAME, name);
+        values.put(SpotifyAccountEntry.COLUMN_EMAIL, email);
+        values.put(SpotifyAccountEntry.COLUMN_SPOTIFY_URL, url);
+        values.put(SpotifyAccountEntry.COLUMN_HREF, href);
+        values.put(SpotifyAccountEntry.COLUMN_IMAGE_URL, image_url);
+        values.put(SpotifyAccountEntry.COLUMN_IMAGE_WIDTH, image_width);
+        values.put(SpotifyAccountEntry.COLUMN_IMAGE_HEIGHT, image_height);
+        values.put(SpotifyAccountEntry.COLUMN_URI, uri);
 
-        db.insert(SpotifyAccountDBHelper.SpotifyAccountEntry.TABLE_NAME, null, values);
+        db.insert(SpotifyAccountEntry.TABLE_NAME, null, values);
     }
 
     // SpotifyAccount Retrieve
@@ -172,13 +175,13 @@ public class StorageSystem {
         SQLiteDatabase db = spotifyDBHelper.getReadableDatabase();
 
         Cursor cursor = db.query(
-                SpotifyAccountDBHelper.SpotifyAccountEntry.TABLE_NAME,
+                SpotifyAccountEntry.TABLE_NAME,
                 null,
-                SpotifyAccountDBHelper.SpotifyAccountEntry.COLUMN_ID + " = ?",
+                SpotifyAccountEntry.COLUMN_ID + " = ?",
                 new String[]{"" + id},
                 null,
                 null,
-                SpotifyAccountDBHelper.SpotifyAccountEntry.COLUMN_ID + " DESC"
+                SpotifyAccountEntry.COLUMN_ID + " DESC"
         );
 
         cursor.moveToNext();
