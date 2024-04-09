@@ -1,4 +1,4 @@
-package com.example.spotify_app.database.database_entries;
+package com.example.spotify_app.database;
 
 public class WrappedArtistEntry {
     // DO NOT instantiate
