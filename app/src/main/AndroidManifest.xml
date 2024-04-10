@@ -13,6 +13,9 @@
         android:theme="@style/Theme.SpotifyApp"
         tools:targetApi="31">
         <activity
+            android:name=".wrappedDisplays.TopGenres"
+            android:exported="false" />
+        <activity
             android:name=".wrappedDisplays.TopTracks"
             android:exported="true">
             <intent-filter>
@@ -24,7 +27,6 @@
                     android:scheme="com.example.ourspotifyapp" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -40,7 +42,6 @@
             android:name=".wrappedDisplays.StartingWrappedScreen"
             android:exported="true">
             <intent-filter>
-
                 <data
                     android:host="auth"
                     android:scheme="com.example.ourspotifyapp" />
@@ -60,17 +61,24 @@
             android:name=".loginScreen.LoginActivity"
             android:exported="true"
             android:theme="@style/Base.Theme.SpotifyApp" />
-
         <activity
             android:name=".ui.SignUpActivity"
             android:exported="true"
             android:theme="@style/Base.Theme.SpotifyApp" />
-
         <activity
             android:name=".homeScreen.HomeActivity"
             android:exported="true"
             android:theme="@style/Theme.SpotifyApp" />
 
+        <!-- all the settings activities -->
+        <activity
+            android:name=".settingScreen.SettingsActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SpotifyApp" />
+        <activity
+            android:name=".accountSettingScreen.AccountSettingActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SpotifyApp" />
     </application>
 
 </manifest>

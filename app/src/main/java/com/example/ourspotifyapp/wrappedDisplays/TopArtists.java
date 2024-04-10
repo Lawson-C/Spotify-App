@@ -51,25 +51,17 @@ public class TopArtists extends AppCompatActivity {
     private static Map<String, String> trackToId = new HashMap<>();
 
 
+    private static ArrayList<String> topTracksToDisplay = new ArrayList<>();
+
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.top_artists_display);
 
         TextView artistsTextView = (TextView) findViewById(R.id.top_artists_text_view);
 
-        // initialize and write the top 5 artists in the textView
-        Map<String, String> artistToId = StartingWrappedScreen.getArtistsToId(); // fix this to get the map constructed in startingWrappedScreen to this variable
-        List<String> artistNameList = new ArrayList<>();
-        int count = 1;
-        for (Map.Entry<String, String> artist_id : artistToId.entrySet()) {
-            String artist = artist_id.getKey();
-            artistNameList.add(count + ": " + artist);
-            count++;
-        }
-
         getToken();
 
-        String formatted = artistNameList.toString().replace("[", " ").replace("]", "").replace(",", "\n" + "\n");
+        String formatted = StartingWrappedScreen.getArtistsToDisplay().toString().replace("[", " ").replace("]", "").replace(",", "\n");
         setTextAsync(formatted, artistsTextView); // this is where the lists of artit previously calculated are finally displayed
         Button getTracksButton = (Button) findViewById(R.id.get_top_tracks);
         getTracksButton.setOnClickListener((v) -> {
@@ -121,7 +113,6 @@ public class TopArtists extends AppCompatActivity {
         mCall.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.d("HTTP", "124, Failed to fetch data: " + e);
                 Toast.makeText(TopArtists.this, "Line 256, Failed to fetch data, watch Logcat for more details",
                         Toast.LENGTH_SHORT).show();
             }
@@ -140,8 +131,9 @@ public class TopArtists extends AppCompatActivity {
                         String trackName = item.getString("name");
                         String trackId = item.getString("id");
                         trackToId.put(trackName, trackId); // adds an artist name mapped to their ids to put in database
-                        trackNames.add(trackName + "\n");
-                        Log.d("LINE 149-154" + count, trackName + trackId);
+//                        trackNames.add(trackName + "\n");
+                        topTracksToDisplay.add(trackName + "\n");
+//                        Log.d("LINE 149-154" + count, trackName + trackId);
 //                        artistDataBaseList.add(artistName);
                     }
                     responseReceived = true;
@@ -187,5 +179,13 @@ public class TopArtists extends AppCompatActivity {
     public static Map<String, String> getTrackToId() {
         return trackToId;
     }
-
+    public static ArrayList<String> getTopTracksToDisplay() {
+        return topTracksToDisplay;
+    }
+    public static void setTopTracksToDisplay(ArrayList<String> topTracksToDisplay) {
+        TopArtists.topTracksToDisplay = topTracksToDisplay;
+    }
+    public static void setTrackToId(Map<String, String> trackToId) {
+        TopArtists.trackToId = trackToId;
+    }
 }

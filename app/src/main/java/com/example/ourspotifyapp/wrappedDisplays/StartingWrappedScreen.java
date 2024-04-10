@@ -14,6 +14,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ourspotifyapp.homeScreen.HomeActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.spotify.sdk.android.auth.AuthorizationClient;
@@ -60,6 +61,9 @@ public class StartingWrappedScreen extends AppCompatActivity {
 
     static Map<String, String> artistToId = new HashMap<>();
 
+
+    static List<String> artistsToDisplay = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("created", "app has started onCreate method -------------------------");
@@ -69,6 +73,7 @@ public class StartingWrappedScreen extends AppCompatActivity {
         // Initialize the buttons
         Button acceptBtn = (Button) findViewById(R.id.accept_button);
         Button getWrappedBtn = (Button) findViewById(R.id.get_wrapped_button);
+        Button backBtn = (Button) findViewById(R.id.back_button);
         RadioButton time_frame_button1 = findViewById(R.id.short_time_frame);
         RadioButton time_frame_button2 = findViewById(R.id.medium_time_frame);
         RadioButton time_frame_button3 = findViewById(R.id.long_time_frame);
@@ -86,6 +91,7 @@ public class StartingWrappedScreen extends AppCompatActivity {
                     desired_time_frame = "long_term";
                 }
                 time_frame_selected = true;
+                getWrappedBtn.setVisibility(View.VISIBLE);
             }
         });
 
@@ -108,6 +114,10 @@ public class StartingWrappedScreen extends AppCompatActivity {
             // so in this part of the method, I should edit the screen to move over to TopArtists.java screen, whereI will display this
 //            Log.d("%%%%%%%%%%&&&&&&&&&&&&&%%%%%%%%%%%", "map of the items" + String.artistToId);
             startActivity(new Intent(StartingWrappedScreen.this, TopArtists.class));
+        });
+
+        backBtn.setOnClickListener((v) -> {
+            startActivity(new Intent(StartingWrappedScreen.this, HomeActivity.class));
         });
 
     }
@@ -207,8 +217,8 @@ public class StartingWrappedScreen extends AppCompatActivity {
                         Log.d("-----------------%$%$%%$", Arrays.toString(genreArray));
 
                         artistToId.put(artistName, artistId); // adds an artist name mapped to their ids to put in database
-                        artistNames.add(artistName + "\n");
-
+//                        artistNames.add(artistName + "\n");
+                        artistsToDisplay.add(artistName + "\n");
                         // This is where I calculate how how often the genres are found
                         // if the genre is found in the hashmap, then the key is incremented by 1 (will change weight later, if not then it is set to 1)
                         for (int x = 0; x < genreArray.length; x++) {
@@ -296,5 +306,14 @@ public class StartingWrappedScreen extends AppCompatActivity {
     }
     public static Map<String, String> getGenreCount() {
         return genreCount;
+    }
+    public static List<String> getArtistsToDisplay() {
+        return artistsToDisplay;
+    }
+    public static void setArtistsToDisplay(List<String> artistsToDisplay) {
+        StartingWrappedScreen.artistsToDisplay = artistsToDisplay;
+    }
+    public static void setArtistToId(Map<String, String> artistToId) {
+        StartingWrappedScreen.artistToId = artistToId;
     }
 }
