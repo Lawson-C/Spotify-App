@@ -1,0 +1,49 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/top_tracks_display"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".wrappedDisplays.TopTracks">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="243dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:text="YOUR TOP 5 TRACKS">
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="492dp">
+
+
+            <TextView
+                android:id="@+id/top_tracks_text_view"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="80dp"
+                android:layout_weight="1"
+                android:textSize="28dp"
+                android:text="Should Be Filled in with top tracks" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/get_top_genres"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Get Top Genres" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

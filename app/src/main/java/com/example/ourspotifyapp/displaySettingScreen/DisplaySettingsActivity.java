@@ -1,12 +1,11 @@
-package com.example.ourspotifyapp.wrappedSettingScreen;
+package com.example.ourspotifyapp.displaySettingScreen;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ourspotifyapp.R;
-
-public class WrappedSettingActivity extends AppCompatActivity {
+public class DisplaySettingsActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
