@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="Your Top 5 Artists:"
+                android:text="YOUR TOP 5 ARTISTS"
                 android:textSize="30dp"
 
                 />

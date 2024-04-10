@@ -1,33 +1,7 @@
-//package com.example.ourspotifyapp.wrappedDisplays;
-//
-//import android.os.Bundle;
-//
-//import androidx.activity.EdgeToEdge;
-//import androidx.appcompat.app.AppCompatActivity;
-//import androidx.core.graphics.Insets;
-//import androidx.core.view.ViewCompat;
-//import androidx.core.view.WindowInsetsCompat;
-//
-//import com.example.ourspotifyapp.R;
-//
-//public class TopTracks extends AppCompatActivity {
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        EdgeToEdge.enable(this);
-//        setContentView(R.layout.activity_top_tracks);
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-//            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-//            return insets;
-//        });
-//    }
-//}
-
 package com.example.ourspotifyapp.wrappedDisplays;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -63,6 +37,7 @@ public class TopTracks extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private ActivityTopTracksBinding binding;
 
+    static List<String> topGenres = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,22 +51,18 @@ public class TopTracks extends AppCompatActivity {
             artistNameList.add(count + ": " + trackName);
             count++;
         }
-
         Button getGenresButton = (Button) findViewById(R.id.get_top_genres);
+
+        TextView topTracksTextView = findViewById(R.id.top_tracks_text_view);
+        String formatted = TopArtists.getTopTracksToDisplay().toString().replace("[", "").replace("]", "").replace(",", "\n");
+        setTextAsync(formatted, topTracksTextView);
 
         getGenresButton.setOnClickListener((v) -> {
             calculateTopGenres();
+            startActivity(new Intent(TopTracks.this, TopGenres.class));
         });
 
-
-        TextView topTracksTextView = findViewById(R.id.top_tracks_text_view);
-        String formatted = artistNameList.toString().replace("[", "").replace("]", "").replace(",", "\n");
-        setTextAsync(formatted, topTracksTextView);
-
-
     }
-
-
 
     private void calculateTopGenres() {
         Map<String, String> myMap = new HashMap<>();
@@ -126,19 +97,24 @@ public class TopTracks extends AppCompatActivity {
                 key5 = currKey;
             }
         }
-        List<String> topGenres = new ArrayList<>();
+
         topGenres.add(key1);
         topGenres.add(key2);
         topGenres.add(key3);
         topGenres.add(key4);
         topGenres.add(key5);
 
-        Log.d("top genre tag------", topGenres.toString());
-
     }
 
     private void setTextAsync(final String text, TextView textView) {
         runOnUiThread(() -> textView.setText(text));
+    }
+
+    public static List<String> getTopGenres() {
+        return topGenres;
+    }
+    public static void setTopGenres(List<String> topGenres) {
+        TopTracks.topGenres = topGenres;
     }
 }
 

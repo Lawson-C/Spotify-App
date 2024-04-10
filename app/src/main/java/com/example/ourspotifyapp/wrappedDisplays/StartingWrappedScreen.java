@@ -60,6 +60,9 @@ public class StartingWrappedScreen extends AppCompatActivity {
 
     static Map<String, String> artistToId = new HashMap<>();
 
+
+    static List<String> artistsToDisplay = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("created", "app has started onCreate method -------------------------");
@@ -86,6 +89,7 @@ public class StartingWrappedScreen extends AppCompatActivity {
                     desired_time_frame = "long_term";
                 }
                 time_frame_selected = true;
+                getWrappedBtn.setVisibility(View.VISIBLE);
             }
         });
 
@@ -207,8 +211,8 @@ public class StartingWrappedScreen extends AppCompatActivity {
                         Log.d("-----------------%$%$%%$", Arrays.toString(genreArray));
 
                         artistToId.put(artistName, artistId); // adds an artist name mapped to their ids to put in database
-                        artistNames.add(artistName + "\n");
-
+//                        artistNames.add(artistName + "\n");
+                        artistsToDisplay.add(artistName + "\n");
                         // This is where I calculate how how often the genres are found
                         // if the genre is found in the hashmap, then the key is incremented by 1 (will change weight later, if not then it is set to 1)
                         for (int x = 0; x < genreArray.length; x++) {
@@ -296,5 +300,14 @@ public class StartingWrappedScreen extends AppCompatActivity {
     }
     public static Map<String, String> getGenreCount() {
         return genreCount;
+    }
+    public static List<String> getArtistsToDisplay() {
+        return artistsToDisplay;
+    }
+    public static void setArtistsToDisplay(List<String> artistsToDisplay) {
+        StartingWrappedScreen.artistsToDisplay = artistsToDisplay;
+    }
+    public static void setArtistToId(Map<String, String> artistToId) {
+        StartingWrappedScreen.artistToId = artistToId;
     }
 }
