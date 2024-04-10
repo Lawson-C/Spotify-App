@@ -59,8 +59,8 @@ public class StorageSystem extends SQLiteOpenHelper {
     /*
      * StorageSystem must be initialized at startup
      */
-    public static StorageSystem init(@NonNull Context context) {
-        return instance == null ? new StorageSystem(context) : instance;
+    public static void init(@NonNull Context context) {
+        instance = instance == null ? new StorageSystem(context) : instance;
     }
 
     // LocalAccount Create
