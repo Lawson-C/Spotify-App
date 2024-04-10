@@ -10,14 +10,13 @@ import androidx.annotation.NonNull;
 
 public class StorageSystem extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "AppData.sqlite";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 6;
 
     private static StorageSystem instance;
     private static SQLiteDatabase database;
 
     private StorageSystem(@NonNull Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        database = context.openOrCreateDatabase(DATABASE_NAME, Context.MODE_PRIVATE, null);
     }
 
     @Override
@@ -60,7 +59,9 @@ public class StorageSystem extends SQLiteOpenHelper {
      * StorageSystem must be initialized at startup
      */
     public static void init(@NonNull Context context) {
-        instance = instance == null ? new StorageSystem(context) : instance;
+        if (instance != null) return;
+        instance = new StorageSystem(context);
+        database = instance.getWritableDatabase();
     }
 
     // LocalAccount Create
@@ -169,19 +170,19 @@ public class StorageSystem extends SQLiteOpenHelper {
     }
 
     // Wrapped Create
-    //  @param date yes, please!
     public static void writeWrappedSong(String title, String artist, int accountID, int date, String imageURL) {
         ContentValues values = new ContentValues();
 
         values.put(WrappedSongEntry.COLUMN_TITLE, title);
         values.put(WrappedSongEntry.COLUMN_ARTIST, artist);
-        values.put(WrappedSongEntry.COLUMN_ID, accountID);
+        values.put(WrappedSongEntry.COLUMN_ACCOUNT_ID, accountID);
         values.put(WrappedSongEntry.COLUMN_DATE, date);
         values.put(WrappedSongEntry.COLUMN_IMAGE_REF, imageURL);
 
-        database.insert(LocalAccountEntry.TABLE_NAME, null, values);
+        database.insert(WrappedSongEntry.TABLE_NAME, null, values);
     }
 
+    //  @param date yes, please!
     public static void writeWrappedArtist(String name, int accountID, int date, String imageURL) {
         ContentValues values = new ContentValues();
 
@@ -190,11 +191,11 @@ public class StorageSystem extends SQLiteOpenHelper {
         values.put(WrappedArtistEntry.COLUMN_DATE, date);
         values.put(WrappedArtistEntry.COLUMN_IMAGE_REF, imageURL);
 
-        database.insert(LocalAccountEntry.TABLE_NAME, null, values);
+        database.insert(WrappedArtistEntry.TABLE_NAME, null, values);
     }
 
     // Wrapped Retrieve
-    public static String[] readWrappedTable(String table, String fieldToMatch, String valueToMatch, String fieldToReceive) {
+    public static String[] readWrappedEntryValue(String table, String fieldToMatch, String valueToMatch, String fieldToReceive) {
         Cursor cursor = database.query(
                 table,
                 null,
@@ -202,7 +203,7 @@ public class StorageSystem extends SQLiteOpenHelper {
                 new String[]{valueToMatch},
                 null,
                 null,
-                WrappedSongEntry.COLUMN_ID + " DESC");
+                null);
 
         String[] output = new String[cursor.getCount()];
         for (int i = 0; i < cursor.getCount(); i++) {
@@ -212,7 +213,29 @@ public class StorageSystem extends SQLiteOpenHelper {
         }
         cursor.close();
 
-        return  output;
+        return output;
+    }
+
+    public static String[][] readWrappedEntry(String table, String fieldToMatch, String valueToMatch) {
+        Cursor cursor = database.query(
+                table,
+                null,
+                fieldToMatch + " = ?",
+                new String[]{valueToMatch},
+                null,
+                null,
+                null);
+
+        String[][] output = new String[cursor.getCount()][cursor.getColumnCount()];
+        for (int i = 0; i < cursor.getCount(); i++) {
+            if (!cursor.moveToNext()) break;
+            for (int j = 0; j < cursor.getColumnCount(); j++) {
+                output[i][j] = cursor.getString(j);
+            }
+        }
+        cursor.close();
+
+        return output;
     }
 
     // Wrapped Update
