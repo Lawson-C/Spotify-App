@@ -1,4 +1,4 @@
-package com.example.spotify_app.loginScreen;
+package com.example.ourspotifyapp.loginScreen;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,13 +7,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import com.example.spotify_app.MainActivity;
-import com.example.spotify_app.database.StorageSystem;
-
-import com.example.spotify_app.R;
+import com.example.ourspotifyapp.R;
+import com.example.ourspotifyapp.wrappedDisplays.StartingWrappedScreen;
+import com.example.ourspotifyapp.MainActivity;
+import com.example.ourspotifyapp.database.StorageSystem;
+import com.example.ourspotifyapp.homeScreen.HomeActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -22,6 +24,8 @@ public class LoginActivity extends AppCompatActivity {
     Button loginButton;
     Button backButton;
     CardView card;
+
+    Button temporaryBtn; // get rid of this later
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +47,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
                if (user.equals("user") && pass.equals("pass")) {
-                   Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
+                   Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                   startActivity(intent);
                } else {
                    Toast.makeText(LoginActivity.this, "Login Failed!", Toast.LENGTH_SHORT).show();
                }
