@@ -14,6 +14,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ourspotifyapp.homeScreen.HomeActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.spotify.sdk.android.auth.AuthorizationClient;
@@ -72,6 +73,7 @@ public class StartingWrappedScreen extends AppCompatActivity {
         // Initialize the buttons
         Button acceptBtn = (Button) findViewById(R.id.accept_button);
         Button getWrappedBtn = (Button) findViewById(R.id.get_wrapped_button);
+        Button backBtn = (Button) findViewById(R.id.back_button);
         RadioButton time_frame_button1 = findViewById(R.id.short_time_frame);
         RadioButton time_frame_button2 = findViewById(R.id.medium_time_frame);
         RadioButton time_frame_button3 = findViewById(R.id.long_time_frame);
@@ -112,6 +114,10 @@ public class StartingWrappedScreen extends AppCompatActivity {
             // so in this part of the method, I should edit the screen to move over to TopArtists.java screen, whereI will display this
 //            Log.d("%%%%%%%%%%&&&&&&&&&&&&&%%%%%%%%%%%", "map of the items" + String.artistToId);
             startActivity(new Intent(StartingWrappedScreen.this, TopArtists.class));
+        });
+
+        backBtn.setOnClickListener((v) -> {
+            startActivity(new Intent(StartingWrappedScreen.this, HomeActivity.class));
         });
 
     }

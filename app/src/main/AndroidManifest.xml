@@ -69,6 +69,16 @@
             android:name=".homeScreen.HomeActivity"
             android:exported="true"
             android:theme="@style/Theme.SpotifyApp" />
+
+        <!-- all the settings activities -->
+        <activity
+            android:name=".settingScreen.SettingsActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SpotifyApp" />
+        <activity
+            android:name=".accountSettingScreen.AccountSettingActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SpotifyApp" />
     </application>
 
 </manifest>

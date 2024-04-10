@@ -39,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
         card = findViewById(R.id.loginCard);
         card.setBackgroundResource(R.drawable.card_background);
 
-        temporaryBtn = findViewById(R.id.temp_button);
         loginButton.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
@@ -55,18 +54,6 @@ public class LoginActivity extends AppCompatActivity {
                }
            }
         });
-
-        temporaryBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, StartingWrappedScreen.class));
-            }
-        });
-
-
-
-
-
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
