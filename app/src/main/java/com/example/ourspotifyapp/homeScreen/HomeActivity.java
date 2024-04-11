@@ -13,6 +13,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.ourspotifyapp.MainActivity;
 import com.example.ourspotifyapp.R;
 import com.example.ourspotifyapp.loginScreen.LoginActivity;
 import com.example.ourspotifyapp.pastSummaries.PastHome;
@@ -46,7 +47,7 @@ public class HomeActivity extends AppCompatActivity {
                 if (item.getItemId() == R.id.accountSettings) {
                     startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
                 } else if (item.getItemId() == R.id.logOut) {
-                    startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+                    startActivity(new Intent(HomeActivity.this, MainActivity.class));
                 }
                 return true;
             }
