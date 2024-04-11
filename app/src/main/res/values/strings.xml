@@ -66,11 +66,13 @@
     <string name="displayHeaderSettingsText">Display</string>
     <string name="dark_mode_switchText">Dark Mode</string>
     <string name="wrappedSettingsHeaderText">Wrapped</string>
-    <string name="change_email">Change Email</string>
     <string name="delete_account">Delete Account</string>
     <string name="back_text">Back</string>
     <string name="past_summaries">Past Summaries</string>
     <string name="_1_year">1 Year</string>
     <string name="_4_weeks">4 Weeks</string>
     <string name="_6_months">6 Months</string>
+    <string name="oldusername">Old Username</string>
+    <string name="newusername">New Username</string>
+    <string name="change_user">Change Username</string>
 </resources>

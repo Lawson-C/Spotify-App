@@ -65,7 +65,7 @@
             android:clickable="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/changePasswordLayout">
+            app:layout_constraintTop_toBottomOf="@+id/accountChangePasswordLayout">
 
             <ImageView
                 android:id="@+id/deleteArrowSettings"
@@ -92,7 +92,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/accountChangeEmailLayout"
+            android:id="@+id/accountChangeUsernameLayout"
             android:layout_width="412dp"
             android:layout_height="80dp"
             android:clickable="true"
@@ -117,7 +117,7 @@
                 android:layout_width="228dp"
                 android:layout_height="28dp"
                 android:layout_marginStart="16dp"
-                android:text="@string/change_email"
+                android:text="@string/change_user"
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -126,13 +126,13 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/changePasswordLayout"
+            android:id="@+id/accountChangePasswordLayout"
             android:layout_width="412dp"
             android:layout_height="80dp"
             android:clickable="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/accountChangeEmailLayout">
+            app:layout_constraintTop_toBottomOf="@+id/accountChangeUsernameLayout">
 
             <ImageView
                 android:id="@+id/deleteAccountArrowSettings"
