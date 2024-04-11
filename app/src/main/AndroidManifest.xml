@@ -57,6 +57,17 @@
                     android:scheme="com.example.ourspotifyapp" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".wrappedDisplays.EmbeddedGame"
+            android:exported="true">
+            <intent-filter>
+                >
+                <data
+                    android:host="auth"
+                    android:scheme="com.example.ourspotifyapp" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".loginScreen.LoginActivity"
             android:exported="true"
@@ -94,6 +105,10 @@
             android:theme="@style/Theme.SpotifyApp" />
         <activity
             android:name=".wrappedDisplays.PastTopGenres"
+            android:exported="true"
+            android:theme="@style/Theme.SpotifyApp" />
+        <activity
+            android:name=".wrappedDisplays.PastEmbeddedGame"
             android:exported="true"
             android:theme="@style/Theme.SpotifyApp" />
     </application>

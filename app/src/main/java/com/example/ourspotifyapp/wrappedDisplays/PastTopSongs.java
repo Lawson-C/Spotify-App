@@ -34,7 +34,7 @@ public class PastTopSongs extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_tracks);
 
-        Button getGenresButton = (Button) findViewById(R.id.get_top_genres);
+        Button getGameButton = (Button) findViewById(R.id.embedded_game);
 
         TextView firstTopTracksTextView = findViewById(R.id.top1_tracks_text_view);
         TextView secondTopTracksTextView = findViewById(R.id.top2_tracks_text_view);
@@ -69,9 +69,9 @@ public class PastTopSongs extends AppCompatActivity {
         setTextAsync(tracksToDisplay[3], fourthTopTracksTextView);
         setTextAsync(tracksToDisplay[4], fifthTopTracksTextView);
 
-        getGenresButton.setOnClickListener((v) -> {
+        getGameButton.setOnClickListener((v) -> {
             mediaPlayer.stop();
-            startActivity(new Intent(PastTopSongs.this, PastTopGenres.class));
+            startActivity(new Intent(PastTopSongs.this, PastEmbeddedGame.class));
         });
 
     }
