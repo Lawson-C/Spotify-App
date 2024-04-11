@@ -12,7 +12,6 @@
         android:layout_height="70dp"
         android:background="@color/spotify_green"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/mainSettingsHolder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -173,7 +172,7 @@
             android:id="@+id/accountconstraintLayout"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:layout_marginHorizontal="30dp"
             android:clickable="true"
             android:gravity="center_vertical"

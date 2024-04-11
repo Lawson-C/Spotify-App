@@ -58,11 +58,12 @@ public class LoginActivity extends AppCompatActivity {
                }
 
                if (pass.equals(checkPass)) {
-                   currentUserHash = Math.abs( (short) user.hashCode());
+                   String hashId = StorageSystem.readLocalAccountValue(LocalAccountEntry.COLUMN_NAME, user, LocalAccountEntry.COLUMN_ID);
+                   currentUserHash = Integer.valueOf(hashId);
                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                    startActivity(intent);
                } else {
-                   Toast.makeText(LoginActivity.this, "Wrong password!", Toast.LENGTH_SHORT).show();
+                   Toast.makeText(LoginActivity.this, "Wrong username or password!", Toast.LENGTH_SHORT).show();
                }
            }
         });

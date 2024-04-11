@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 
 public class StorageSystem extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "AppData.sqlite";
-    public static final int DATABASE_VERSION = 8;
+    public static final int DATABASE_VERSION = 9;
 
     private static StorageSystem instance;
     private static SQLiteDatabase database;
@@ -167,7 +167,7 @@ public class StorageSystem extends SQLiteOpenHelper {
     }
 
     //  LocalAccount Update
-    public static void setIntLocalAccount(int id, String field, int value) {
+    public static void setIntLocalAccount(int id, String field, String value) {
         ContentValues content = new ContentValues();
 
         content.put(field, value);
