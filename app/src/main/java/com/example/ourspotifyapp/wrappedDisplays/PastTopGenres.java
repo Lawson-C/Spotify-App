@@ -45,7 +45,12 @@ public class PastTopGenres extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_past_top_genres);
 
-        TextView topGenresTextView = findViewById(R.id.top_genres_text_view);
+        TextView firstTopGenresTextView = findViewById(R.id.top1_genres_text_view);
+        TextView secondTopGenresTextView = findViewById(R.id.top2_genres_text_view);
+        TextView thirdTopGenresTextView = findViewById(R.id.top3_genres_text_view);
+        TextView fourthTopGenresTextView = findViewById(R.id.top4_genres_text_view);
+        TextView fifthTopGenresTextView = findViewById(R.id.top5_genres_text_view);
+
         Button returnToStart = (Button) findViewById(R.id.returnToStart);
 
         int trackIdToPlay = 2;
@@ -66,8 +71,13 @@ public class PastTopGenres extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        List<String> genresToDisplay = Arrays.asList(PastHome.getGenreNames());
-        setTextAsync(genresToDisplay.toString().replace("[", " ").replace("]", "").replace(",", "\n"), topGenresTextView);
+        String[] genresToDisplay = PastHome.getGenreNames();
+//        setTextAsync(genresToDisplay.toString().replace("[", " ").replace("]", "").replace(",", "\n"), topGenresTextView);
+        setTextAsync(genresToDisplay[0], firstTopGenresTextView);
+        setTextAsync(genresToDisplay[1], secondTopGenresTextView);
+        setTextAsync(genresToDisplay[2], thirdTopGenresTextView);
+        setTextAsync(genresToDisplay[3], fourthTopGenresTextView);
+        setTextAsync(genresToDisplay[4], fifthTopGenresTextView);
 
         returnToStart.setOnClickListener((v) -> {
 
@@ -83,7 +93,7 @@ public class PastTopGenres extends AppCompatActivity {
 
 
 
-            startActivity(new Intent(PastTopGenres.this, StartingWrappedScreen.class));
+            startActivity(new Intent(PastTopGenres.this, PastHome.class));
         });
     }
 

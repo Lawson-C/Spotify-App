@@ -60,8 +60,6 @@ public class LoginActivity extends AppCompatActivity {
                    currentUserHash = Math.abs( (short) user.hashCode());
                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                    startActivity(intent);
-               } else {
-                   Toast.makeText(LoginActivity.this, "Login Failed!", Toast.LENGTH_SHORT).show();
                }
            }
         });
@@ -69,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("---------------------", "Should be switching to Main, back button was selected");
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             }
