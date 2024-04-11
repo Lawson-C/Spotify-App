@@ -1,22 +1,15 @@
 package com.example.ourspotifyapp.accountSettingScreen;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 
 import com.example.ourspotifyapp.R;
-import com.example.ourspotifyapp.homeScreen.HomeActivity;
-import com.example.ourspotifyapp.loginScreen.LoginActivity;
 
 public class AccountSettingActivity extends AppCompatActivity {
     @Override
@@ -27,7 +20,7 @@ public class AccountSettingActivity extends AppCompatActivity {
         ConstraintLayout chngPW = findViewById(R.id.accountChangePasswordLayout);
         ConstraintLayout deleteAcc = findViewById(R.id.deleteAccount);
         chngUser.setOnClickListener(v -> changeUser());
-
+        chngPW.setOnClickListener(v -> changePW());
     }
 
     private void changeUser() {
@@ -40,26 +33,17 @@ public class AccountSettingActivity extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText oldUser = findViewById(R.id.oldusernameDialog);
-                EditText newUser = findViewById(R.id.newusernameDialog);
+                EditText oldUser = findViewById(R.id.oldPasswordDialog);
+                EditText newUser = findViewById(R.id.newPasswordDialog);
                 String oldUserText = oldUser.getText().toString();
                 String newUserText = newUser.getText().toString();
-
-
-
                 /*
-
-
                 /////////////////////////////////////////////////////////
 
                     ADD COMPARISON FOR OLD USER TO CHECK FOR CORRECT USERS
                     WHEN DATABASE IS READY FOR IMPLEMENTATION
 
                 /////////////////////////////////////////////////////////
-
-
-
-
                  */
             }
         });
@@ -72,6 +56,35 @@ public class AccountSettingActivity extends AppCompatActivity {
     }
 
     private void changePW() {
+        Dialog popUp = new Dialog(this);
+        popUp.setContentView(R.layout.changepasswordprompt);
+        popUp.show();
+        Button confirm = popUp.findViewById(R.id.confirmdButtonPWChange);
+        Button cancel =  popUp.findViewById(R.id.cancelButtonPWChange);
+
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText oldPW = findViewById(R.id.oldPasswordText);
+                EditText newPW = findViewById(R.id.newPasswordText);
+                String oldPWText = oldPW.getText().toString();
+                String newPWText = newPW.getText().toString();
+                /*
+                /////////////////////////////////////////////////////////
+
+                    ADD COMPARISON FOR OLD USER TO CHECK FOR CORRECT USERS
+                    WHEN DATABASE IS READY FOR IMPLEMENTATION
+
+                /////////////////////////////////////////////////////////
+                 */
+            }
+        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popUp.dismiss();
+            }
+        });
     }
 
     private void deleteAcc() {

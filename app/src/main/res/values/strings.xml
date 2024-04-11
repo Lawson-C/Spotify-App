@@ -75,4 +75,6 @@
     <string name="oldusername">Old Username</string>
     <string name="newusername">New Username</string>
     <string name="change_user">Change Username</string>
+    <string name="new_password">New Password</string>
+    <string name="old_password">Old Password</string>
 </resources>
