@@ -302,7 +302,7 @@ public class StartingWrappedScreen extends AppCompatActivity {
         Map<String, String> trackToId = new HashMap<>();
         // Create a request to get the user profile
         final Request request = new Request.Builder()
-                .url(String.format("https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=%s", specified_time_range))
+                .url(String.format("https://api.spotify.com/v1/me/top/tracks?limit=5&time_range=%s", specified_time_range))
                 .addHeader("Authorization", "Bearer " + mAccessToken)
                 .build();
 
@@ -330,9 +330,9 @@ public class StartingWrappedScreen extends AppCompatActivity {
                         JSONObject item = items.getJSONObject(i);
                         String trackName = item.getString("name");
                         String trackId = item.getString("id");
-                        if (i < 5) { // JUST ADDED THIS CONDITION SO THE DISPLAYED ARTISTS ARE ONLY TOP 5, BUT THE trackToID TAKES THE TOP 50 FOR GAME
-                            topTracksToDisplay.add(trackName + "\n");
-                        }
+                        // if (i < 5) { // JUST ADDED THIS CONDITION SO THE DISPLAYED ARTISTS ARE ONLY TOP 5, BUT THE trackToID TAKES THE TOP 50 FOR GAME
+                        topTracksToDisplay.add(trackName + "\n");
+                        // }
                         trackToId.put(trackName, trackId); // adds an artist name mapped to their ids to put in database
                     }
                     responseReceived = true;

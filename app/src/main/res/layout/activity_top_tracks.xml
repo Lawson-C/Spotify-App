@@ -12,51 +12,57 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:gravity="center"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="243dp"
         android:background="@color/dark_purple">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="YOUR TOP 5 TRACKS"
-                android:background="@color/black"
-                android:textColor="@color/spotify_green"
-                android:textSize="30dp"
                 android:layout_marginTop="15dp"
-                />
+                android:background="@color/dark_purple"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:text="YOUR TOP 5 TRACKS"
+                android:textColor="@color/purple_200"
+                android:textSize="30dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="400dp"
-            android:layout_marginTop="60dp"
+            android:layout_width="match_parent"
             android:layout_height="460dp"
-            android:orientation="vertical"
-            android:background="@color/black">
+            android:layout_marginTop="60dp"
+            android:gravity="center"
+            android:background="@color/purple_200"
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/top1_tracks_text_view"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:gravity="center"
                 android:layout_margin="10dp"
-                android:textSize="25dp"
                 android:layout_weight="1"
-                android:text="1st Track" />
+                android:textColor="@color/white"
+                android:text="1st Track"
+                android:textSize="25dp" />
 
             <TextView
                 android:id="@+id/top2_tracks_text_view"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:gravity="center"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
+                android:textColor="@color/white"
                 android:text="2nd Track"
                 android:textSize="25dp" />
 
@@ -64,9 +70,10 @@
                 android:id="@+id/top3_tracks_text_view"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:gravity="center"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
+                android:textColor="@color/white"
                 android:text="3rd Track"
                 android:textSize="25dp" />
 
@@ -74,9 +81,10 @@
                 android:id="@+id/top4_tracks_text_view"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:gravity="center"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
+                android:textColor="@color/white"
                 android:text="4th Track"
                 android:textSize="25dp" />
 
@@ -84,9 +92,10 @@
                 android:id="@+id/top5_tracks_text_view"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:gravity="center"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
+                android:textColor="@color/white"
                 android:text="5th Track"
                 android:textSize="25dp" />
         </LinearLayout>
@@ -99,9 +108,12 @@
 
         <Button
             android:id="@+id/get_top_genres"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            app:backgroundTint="@null"
+            android:background="@drawable/purple_button_border"
+            android:textColor="@color/white"
             android:text="Get Top Genres" />
     </LinearLayout>
 

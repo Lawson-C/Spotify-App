@@ -18,8 +18,12 @@ import com.example.ourspotifyapp.R;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
+
+import okhttp3.Call;
+import okhttp3.OkHttpClient;
 
 public class PastTopArtists extends AppCompatActivity {
 
@@ -29,10 +33,14 @@ public class PastTopArtists extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.top_artists_display);
 
-        TextView artistsTextView = (TextView) findViewById(R.id.top_artists_text_view);
+        TextView firstArtistTextView = (TextView) findViewById(R.id.top1_artists_text_view);
+        TextView secondArtistTextView = (TextView) findViewById(R.id.top2_artists_text_view);
+        TextView thirdArtistTextView = (TextView) findViewById(R.id.top3_artists_text_view);
+        TextView fourthArtistTextView = (TextView) findViewById(R.id.top4_artists_text_view);
+        TextView fifthArtistTextView = (TextView) findViewById(R.id.top5_artists_text_view);
 
-        int trackIdtoPlay = 0;
-        String previewUrl = PastHome.getUrlNames()[trackIdtoPlay];
+        int trackIdToPlay = 0;
+        String previewUrl = PastHome.getUrlNames()[trackIdToPlay];
 
         Log.d("url correct?", previewUrl);
         mediaPlayer = new MediaPlayer();
@@ -49,8 +57,14 @@ public class PastTopArtists extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        String formatted = Arrays.asList(PastHome.getArtistNames()).toString().replace("[", " ").replace("]", "").replace(",", "\n");
-        setTextAsync(formatted, artistsTextView); // this is where the lists of artit previously calculated are finally displayed
+        String[] artistsListToDisplay = PastHome.getSongNames();
+//        String formatted = StartingWrappedScreen.getArtistsToDisplay().toString().replace("[", " ").replace("]", "").replace(",", "\n");
+        setTextAsync(artistsListToDisplay[0], firstArtistTextView);
+        setTextAsync(artistsListToDisplay[1], secondArtistTextView);
+        setTextAsync(artistsListToDisplay[2], thirdArtistTextView);
+        setTextAsync(artistsListToDisplay[3], fourthArtistTextView);
+        setTextAsync(artistsListToDisplay[4], fifthArtistTextView);
+
         Button getTracksButton = (Button) findViewById(R.id.get_top_tracks);
         getTracksButton.setOnClickListener((v) -> {
             mediaPlayer.stop();
@@ -63,3 +77,4 @@ public class PastTopArtists extends AppCompatActivity {
     }
 
 }
+

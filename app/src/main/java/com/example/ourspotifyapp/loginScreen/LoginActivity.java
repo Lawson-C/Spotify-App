@@ -55,10 +55,11 @@ public class LoginActivity extends AppCompatActivity {
                } catch (Exception e) {
                    Log.d("login exception", "something happened? " + e);
                }
+
+               if (pass.equals(checkPass)) {
+                   currentUserHash = Math.abs( (short) user.hashCode());
                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                    startActivity(intent);
-               } else {
-                   Toast.makeText(LoginActivity.this, "Login Failed!", Toast.LENGTH_SHORT).show();
                }
            }
         });

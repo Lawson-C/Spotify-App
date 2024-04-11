@@ -1,41 +1,79 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/starting_wrapped_screen"
+    android:background="@color/dark_gray"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".wrappedDisplays.StartingWrappedScreen">
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/past_summaries"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:fontFamily="@font/manrope_extrabold"
+        android:text="@string/generate_wrapped"
+        android:textAlignment="center"
+        android:textColor="@color/spotify_green"
+        android:textSize="36sp"
+        android:textStyle="bold" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="243dp">
+        android:layout_width="400dp"
+        android:layout_height="60dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:fontFamily="@font/manrope_bold"
+            android:gravity="center"
+            android:text="Generate a wrapped summary to view information about your listening habits."
+            android:textColor="@color/spotify_green"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="8dp"
             android:visibility="gone"
+            android:textColor="@color/spotify_green"
             tools:text="Select Wrapped Time-Frame" />
 
         <Button
             android:id="@+id/accept_button"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            app:backgroundTint="@null"
+            android:background="@drawable/button_border"
+            android:layout_margin="20dp"
+            android:textColor="@color/black"
             android:text="Grant Account Access" />
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/spotify_green"
                 android:text="Select Time Frame for Wrapped"/>
             <RadioGroup
                 android:layout_width="wrap_content"
@@ -46,6 +84,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
+                    android:textColor="@color/spotify_green"
                     android:text="4 Weeks"
                     android:textSize="10sp" />
 
@@ -54,6 +93,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
+                    android:textColor="@color/spotify_green"
                     android:text="6 Months"
                     android:textSize="10sp" />
 
@@ -62,40 +102,52 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
+                    android:textColor="@color/spotify_green"
                     android:text="1 Year"
                     android:textSize="10sp" />
             </RadioGroup>
 
             <Button
                 android:id="@+id/submitted_time_frame"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
+                app:backgroundTint="@null"
+                android:background="@drawable/button_border"
+                android:layout_margin="20dp"
+                android:textColor="@color/black"
                 android:text="Confirm Selection"/>
 
             <Button
                 android:id="@+id/back_button"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
+                app:backgroundTint="@null"
+                android:background="@drawable/button_border"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/black"
                 android:text="Back" />
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
 
             android:layout_width="match_parent"
-            android:layout_height="469dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical">
 
             <Button
                 android:id="@+id/get_wrapped_button"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginBottom="404dp"
                 android:layout_weight="1"
                 android:text="Get Spotify Wrapped"
+                android:textColor="@color/black"
+                app:backgroundTint="@null"
+                android:background="@drawable/button_border"
                 app:layout_constraintBottom_toBottomOf="parent"
-                tools:layout_editor_absoluteX="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 android:visibility="gone"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -104,7 +156,7 @@
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
 
 
 

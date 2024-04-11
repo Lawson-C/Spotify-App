@@ -36,6 +36,12 @@ public class PastTopSongs extends AppCompatActivity {
 
         Button getGenresButton = (Button) findViewById(R.id.get_top_genres);
 
+        TextView firstTopTracksTextView = findViewById(R.id.top1_tracks_text_view);
+        TextView secondTopTracksTextView = findViewById(R.id.top2_tracks_text_view);
+        TextView thirdTopTracksTextView = findViewById(R.id.top3_tracks_text_view);
+        TextView fourthTopTracksTextView = findViewById(R.id.top4_tracks_text_view);
+        TextView fifthTopTracksTextView = findViewById(R.id.top5_tracks_text_view);
+
         int trackIdToPlay = 1;
         String previewUrl = PastHome.getUrlNames()[trackIdToPlay];
 
@@ -56,9 +62,12 @@ public class PastTopSongs extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        TextView topTracksTextView = findViewById(R.id.top_tracks_text_view);
-        String formatted = Arrays.asList(PastHome.getSongNames()).toString().replace("[", "").replace("]", "").replace(",", "\n");
-        setTextAsync(formatted, topTracksTextView);
+        String[] tracksToDisplay = PastHome.getSongNames();
+        setTextAsync(tracksToDisplay[0], firstTopTracksTextView);
+        setTextAsync(tracksToDisplay[1], secondTopTracksTextView);
+        setTextAsync(tracksToDisplay[2], thirdTopTracksTextView);
+        setTextAsync(tracksToDisplay[3], fourthTopTracksTextView);
+        setTextAsync(tracksToDisplay[4], fifthTopTracksTextView);
 
         getGenresButton.setOnClickListener((v) -> {
             mediaPlayer.stop();

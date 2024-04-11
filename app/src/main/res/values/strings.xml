@@ -73,4 +73,5 @@
     <string name="_1_year">1 Year</string>
     <string name="_4_weeks">4 Weeks</string>
     <string name="_6_months">6 Months</string>
+    <string name="generate_wrapped">Generate Wrapped Summary</string>
 </resources>
