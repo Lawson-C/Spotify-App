@@ -44,6 +44,23 @@ public class AccountSettingActivity extends AppCompatActivity {
                 EditText newUser = findViewById(R.id.newusernameDialog);
                 String oldUserText = oldUser.getText().toString();
                 String newUserText = newUser.getText().toString();
+
+
+
+                /*
+
+
+                /////////////////////////////////////////////////////////
+
+                    ADD COMPARISON FOR OLD USER TO CHECK FOR CORRECT USERS
+                    WHEN DATABASE IS READY FOR IMPLEMENTATION
+
+                /////////////////////////////////////////////////////////
+
+
+
+
+                 */
             }
         });
         cancel.setOnClickListener(new View.OnClickListener() {
