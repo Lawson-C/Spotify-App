@@ -23,13 +23,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.settings);
-        ConstraintLayout account = this.findViewById(R.id.accountconstraintLayout);
-        account.findViewById(R.id.accountconstraintLayout);
-        account.setOnClickListener(v -> openAccountSettings());
+        setContentView(R.layout.menu);
 
-
-/*
         StorageSystem.init(getApplicationContext());
 
         loginButton = findViewById(R.id.loginButton);
@@ -37,12 +32,6 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(v -> openLoginActivity());
         signupButton.setOnClickListener(v -> openSignUpActivity());
 
- */
-    }
-
-    private void openAccountSettings() {
-        Intent intent = new Intent(this, AccountSettingActivity.class);
-        startActivity(intent);
     }
 
     public void openLoginActivity() {

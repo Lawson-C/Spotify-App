@@ -12,6 +12,7 @@ import com.example.ourspotifyapp.accountSettingScreen.AccountSettingActivity;
 import com.example.ourspotifyapp.dataSettingScreen.DataSettingActivity;
 import com.example.ourspotifyapp.database.WrappedArtistEntry;
 import com.example.ourspotifyapp.displaySettingScreen.DisplaySettingsActivity;
+import com.example.ourspotifyapp.homeScreen.HomeActivity;
 import com.example.ourspotifyapp.loginScreen.LoginActivity;
 import com.example.ourspotifyapp.notifScreen.NotifSettingActivity;
 import com.example.ourspotifyapp.wrappedSettingScreen.WrappedSettingActivity;
@@ -65,7 +66,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void backArrowMethod() {
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 
