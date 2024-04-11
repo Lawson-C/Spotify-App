@@ -3,17 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/accountSettings"
-    android:background="#0A0B33"
-
+    android:background="@color/dark_gray"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/accountSettingsHeader"
-        android:layout_width="408dp"
-        android:layout_height="71dp"
-        android:layout_marginTop="4dp"
-        android:background="#10114a"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/spotify_green"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,34 +46,32 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/accountConstraintSettingsHolder"
-        android:layout_width="419dp"
-        android:layout_height="631dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/accountSettingsHeader"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toBottomOf="@+id/accountSettingsHeader">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="412dp"
+            android:layout_width="match_parent"
             android:layout_height="80dp"
             android:id="@+id/deleteAccount"
             android:clickable="true"
+            android:layout_marginHorizontal="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/changePasswordLayout">
+            app:layout_constraintTop_toBottomOf="@+id/accountChangePasswordLayout">
 
             <ImageView
                 android:id="@+id/deleteArrowSettings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
                 android:src="@drawable/baseline_arrow_forward_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.888"
-                app:layout_constraintStart_toEndOf="@+id/deleteText"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -92,24 +88,23 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/accountChangeEmailLayout"
-            android:layout_width="412dp"
+            android:id="@+id/accountChangeUsernameLayout"
+            android:layout_width="match_parent"
             android:layout_height="80dp"
+            android:layout_marginHorizontal="30dp"
             android:clickable="true"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.428"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/changePasswordArrowSettings"
                 android:layout_width="wrap_content"
+                android:layout_marginEnd="16dp"
                 android:layout_height="wrap_content"
                 android:src="@drawable/baseline_arrow_forward_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.888"
-                app:layout_constraintStart_toEndOf="@+id/accountChangeEmailTextView"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -117,7 +112,7 @@
                 android:layout_width="228dp"
                 android:layout_height="28dp"
                 android:layout_marginStart="16dp"
-                android:text="@string/change_email"
+                android:text="@string/change_user"
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -126,23 +121,23 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/changePasswordLayout"
-            android:layout_width="412dp"
+            android:id="@+id/accountChangePasswordLayout"
+            android:layout_width="match_parent"
             android:layout_height="80dp"
+            android:layout_marginHorizontal="30dp"
             android:clickable="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/accountChangeEmailLayout">
+            app:layout_constraintTop_toBottomOf="@+id/accountChangeUsernameLayout">
 
             <ImageView
                 android:id="@+id/deleteAccountArrowSettings"
+                android:layout_marginEnd="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/baseline_arrow_forward_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.888"
-                app:layout_constraintStart_toEndOf="@+id/accountDeleteText"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView

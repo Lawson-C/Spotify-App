@@ -14,6 +14,7 @@ import androidx.cardview.widget.CardView;
 
 import com.example.ourspotifyapp.R;
 import com.example.ourspotifyapp.database.LocalAccountEntry;
+import com.example.ourspotifyapp.ui.SignUpActivity;
 import com.example.ourspotifyapp.wrappedDisplays.StartingWrappedScreen;
 import com.example.ourspotifyapp.MainActivity;
 import com.example.ourspotifyapp.database.StorageSystem;
@@ -57,9 +58,12 @@ public class LoginActivity extends AppCompatActivity {
                }
 
                if (pass.equals(checkPass)) {
-                   currentUserHash = Math.abs( (short) user.hashCode());
+                   String hashId = StorageSystem.readLocalAccountValue(LocalAccountEntry.COLUMN_NAME, user, LocalAccountEntry.COLUMN_ID);
+                   currentUserHash = Integer.valueOf(hashId);
                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                    startActivity(intent);
+               } else {
+                   Toast.makeText(LoginActivity.this, "Wrong username or password!", Toast.LENGTH_SHORT).show();
                }
            }
         });

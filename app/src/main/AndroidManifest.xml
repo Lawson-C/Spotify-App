@@ -57,6 +57,17 @@
                     android:scheme="com.example.ourspotifyapp" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".wrappedDisplays.EmbeddedGame"
+            android:exported="true">
+            <intent-filter>
+                >
+                <data
+                    android:host="auth"
+                    android:scheme="com.example.ourspotifyapp" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".loginScreen.LoginActivity"
             android:exported="true"
@@ -79,6 +90,22 @@
             android:name=".accountSettingScreen.AccountSettingActivity"
             android:exported="true"
             android:theme="@style/Theme.SpotifyApp" />
+        <activity
+            android:name=".dataSettingScreen.DataSettingActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SpotifyApp" />
+        <activity
+            android:name=".wrappedSettingScreen.WrappedSettingActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SpotifyApp" />
+        <activity
+            android:name=".notifScreen.NotifSettingActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SpotifyApp" />
+        <activity
+            android:name=".displaySettingScreen.DisplaySettingsActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SpotifyApp" />
 
         <activity
             android:name=".wrappedDisplays.PastHome"
@@ -94,6 +121,10 @@
             android:theme="@style/Theme.SpotifyApp" />
         <activity
             android:name=".wrappedDisplays.PastTopGenres"
+            android:exported="true"
+            android:theme="@style/Theme.SpotifyApp" />
+        <activity
+            android:name=".wrappedDisplays.PastEmbeddedGame"
             android:exported="true"
             android:theme="@style/Theme.SpotifyApp" />
     </application>

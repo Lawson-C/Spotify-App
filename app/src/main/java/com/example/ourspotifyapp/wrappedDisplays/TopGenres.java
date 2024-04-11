@@ -50,15 +50,6 @@ import okhttp3.Response;
 
 public class TopGenres extends AppCompatActivity {
 
-    public static final String CLIENT_ID = "631dbb12d2b642bebb1e019886c20525";
-    public static final String REDIRECT_URI = "com.example.ourspotifyapp://auth";
-    public static final int AUTH_TOKEN_REQUEST_CODE = 0;
-    public static final int AUTH_CODE_REQUEST_CODE = 1;
-    private final OkHttpClient mOkHttpClient = new OkHttpClient();
-    private String mAccessToken, mAccessCode;
-    private static boolean responseReceived = false;
-    private Call mCall;
-
     private MediaPlayer mediaPlayer;
 
     @Override

@@ -107,14 +107,14 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
-            android:id="@+id/get_top_genres"
+            android:id="@+id/embedded_game"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             app:backgroundTint="@null"
             android:background="@drawable/purple_button_border"
             android:textColor="@color/white"
-            android:text="Get Top Genres" />
+            android:text="Embedded Game" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
