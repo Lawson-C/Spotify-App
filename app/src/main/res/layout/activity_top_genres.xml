@@ -4,6 +4,7 @@
     android:id="@+id/top_genres_display"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".wrappedDisplays.TopGenres">
 
     <LinearLayout
@@ -15,10 +16,15 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="match_parent"
+            android:layout_width="375dp"
             android:layout_height="wrap_content"
-            android:text="YOUR TOP GENRES"
-            android:textSize="30dp" />
+            android:layout_margin="25dp"
+            android:fontFamily="@font/manrope_extrabold"
+            android:gravity="center"
+            android:text="Your Top Genres"
+            android:textColor="@color/spotify_green"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -27,6 +33,7 @@
             <TextView
                 android:id="@+id/top_genres_text_view"
                 android:layout_width="280dp"
+                android:textColor="@color/white"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_margin="80dp"
@@ -37,10 +44,14 @@
 
         <Button
             android:id="@+id/returnToStart"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="Return To Start" />
+            android:layout_width="374dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/button_border"
+            android:text="Return To Start"
+            android:textColor="@color/black"
+            app:backgroundTint="@null" />
     </LinearLayout>
 
 

@@ -2,17 +2,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/notifsSettings"
-    android:background="#0A0B33"
+    android:background="#232323"
 
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayoutNotifsSettings"
-        android:layout_width="408dp"
+        android:layout_width="420dp"
         android:layout_height="71dp"
         android:layout_marginTop="4dp"
-        android:background="#10114a"
+        android:background="@color/black"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

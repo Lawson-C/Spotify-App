@@ -4,6 +4,7 @@
     android:id="@+id/top_tracks_display"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".wrappedDisplays.TopTracks">
 
 
@@ -15,12 +16,16 @@
         tools:layout_editor_absoluteY="243dp">
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/textView"
+            android:layout_width="375dp"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
-            android:text="YOUR TOP 5 TRACKS">
-
-        </TextView>
+            android:layout_margin="25dp"
+            android:fontFamily="@font/manrope_extrabold"
+            android:gravity="center"
+            android:text="Your Top Tracks"
+            android:textColor="@color/spotify_green"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -34,15 +39,20 @@
                 android:layout_gravity="center_vertical"
                 android:layout_margin="80dp"
                 android:layout_weight="1"
+                android:textColor="@color/white"
                 android:textSize="28dp"
                 android:text="Should Be Filled in with top tracks" />
         </LinearLayout>
         <Button
             android:id="@+id/get_top_genres"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="Get Top Genres" />
+            android:layout_width="374dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/button_border"
+            android:text="Get Top Genres"
+            android:textColor="@color/black"
+            app:backgroundTint="@null" />
     </LinearLayout>
 
 
