@@ -17,6 +17,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ourspotifyapp.MainActivity;
 import com.example.ourspotifyapp.homeScreen.HomeActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -67,6 +68,7 @@ public class StartingWrappedScreen extends AppCompatActivity {
     private Call mCall;
     boolean time_frame_selected = false;
     static String desired_time_frame;
+    static boolean acceptBtnSelected = false;
 
     static Map<String, String> artistToId = new HashMap<>();
     static List<String> artistsToDisplay = new ArrayList<>();
@@ -84,7 +86,6 @@ public class StartingWrappedScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("created", "app has started onCreate method -------------------------");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_starting_wrapped_screen);
 
@@ -114,11 +115,8 @@ public class StartingWrappedScreen extends AppCompatActivity {
         });
 
         acceptBtn.setOnClickListener((v) -> {
+            acceptBtnSelected = true;
             getToken();
-        });
-
-        time_frame_button1.setOnClickListener((v) -> {
-
         });
 
         getWrappedBtn.setOnClickListener((v) -> {
@@ -128,32 +126,39 @@ public class StartingWrappedScreen extends AppCompatActivity {
             } else {
                 artistToId = getTopArtists(desired_time_frame);
             }
-            getTopTracks(desired_time_frame);
-            calculateTopGenres();
-            getAudioFiles();
+            if (!acceptBtnSelected) {
+                Toast.makeText(StartingWrappedScreen.this, "Must Grant Account Access First.",
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                getTopTracks(desired_time_frame);
+                calculateTopGenres();
+                getAudioFiles();
 
-            Map<String, String> trackToId = StartingWrappedScreen.getTrackToId();
-            int count = 1;
-            String trackIdToPlay = "";
-            Log.d("test", trackToId.toString());
-            for (Map.Entry<String, String> x : trackToId.entrySet()) {
-                Log.d("hmmmm", String.valueOf(x));
-                if (count == 1) {
-                    trackIdToPlay = x.getValue();
+                Map<String, String> trackToId = StartingWrappedScreen.getTrackToId();
+                int count = 1;
+                String trackIdToPlay = "";
+                Log.d("test", trackToId.toString());
+                for (Map.Entry<String, String> x : trackToId.entrySet()) {
+                    Log.d("hmmmm", String.valueOf(x));
+                    if (count == 1) {
+                        trackIdToPlay = x.getValue();
+                    }
+                    count++;
                 }
-                count++;
-            }
 
-            Log.d("tag yayyy", trackIdToPlay);
+                Log.d("tag yayyy", trackIdToPlay);
 
-            // playTrackAlternative(trackIdToPlay);
-            // by the time the function gets to here, the map of artists to their ids should be saved and we should be ready to move over and display them
-            // so in this part of the method, I should edit the screen to move over to TopArtists.java screen, whereI will display this
+                // playTrackAlternative(trackIdToPlay);
+                // by the time the function gets to here, the map of artists to their ids should be saved and we should be ready to move over and display them
+                // so in this part of the method, I should edit the screen to move over to TopArtists.java screen, whereI will display this
 //            Log.d("%%%%%%%%%%&&&&&&&&&&&&&%%%%%%%%%%%", "map of the items" + String.artistToId);
-            startActivity(new Intent(StartingWrappedScreen.this, TopArtists.class));
+                acceptBtnSelected = false;
+                startActivity(new Intent(StartingWrappedScreen.this, TopArtists.class));
+            }
         });
 
         backBtn.setOnClickListener((v) -> {
+            acceptBtnSelected = false;
             startActivity(new Intent(StartingWrappedScreen.this, HomeActivity.class));
         });
 
@@ -269,6 +274,7 @@ public class StartingWrappedScreen extends AppCompatActivity {
                             }
                         }
                     }
+
                     Map artistDataBaseMap = new HashMap<String, String>();
                     artistDataBaseMap = artistToId;
 
@@ -296,7 +302,7 @@ public class StartingWrappedScreen extends AppCompatActivity {
         Map<String, String> trackToId = new HashMap<>();
         // Create a request to get the user profile
         final Request request = new Request.Builder()
-                .url(String.format("https://api.spotify.com/v1/me/top/tracks?limit=5&time_range=%s", specified_time_range))
+                .url(String.format("https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=%s", specified_time_range))
                 .addHeader("Authorization", "Bearer " + mAccessToken)
                 .build();
 
@@ -324,11 +330,10 @@ public class StartingWrappedScreen extends AppCompatActivity {
                         JSONObject item = items.getJSONObject(i);
                         String trackName = item.getString("name");
                         String trackId = item.getString("id");
+                        if (i < 5) { // JUST ADDED THIS CONDITION SO THE DISPLAYED ARTISTS ARE ONLY TOP 5, BUT THE trackToID TAKES THE TOP 50 FOR GAME
+                            topTracksToDisplay.add(trackName + "\n");
+                        }
                         trackToId.put(trackName, trackId); // adds an artist name mapped to their ids to put in database
-//                        trackNames.add(trackName + "\n");
-                        topTracksToDisplay.add(trackName + "\n");
-//                        Log.d("LINE 149-154" + count, trackName + trackId);
-//                        artistDataBaseList.add(artistName);
                     }
                     responseReceived = true;
 

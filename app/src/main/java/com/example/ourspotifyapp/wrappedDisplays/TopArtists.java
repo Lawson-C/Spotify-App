@@ -60,7 +60,11 @@ public class TopArtists extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.top_artists_display);
 
-        TextView artistsTextView = (TextView) findViewById(R.id.top_artists_text_view);
+        TextView firstArtistTextView = (TextView) findViewById(R.id.top1_artists_text_view);
+        TextView secondArtistTextView = (TextView) findViewById(R.id.top2_artists_text_view);
+        TextView thirdArtistTextView = (TextView) findViewById(R.id.top3_artists_text_view);
+        TextView fourthArtistTextView = (TextView) findViewById(R.id.top4_artists_text_view);
+        TextView fifthArtistTextView = (TextView) findViewById(R.id.top5_artists_text_view);
 
         Map<String, String> trackToId = StartingWrappedScreen.getTrackToId();
         int count = 1;
@@ -91,9 +95,15 @@ public class TopArtists extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        ArrayList<String> artistsListToDisplay = (ArrayList) StartingWrappedScreen.getArtistsToDisplay();
+//        String formatted = StartingWrappedScreen.getArtistsToDisplay().toString().replace("[", " ").replace("]", "").replace(",", "\n");
+        setTextAsync(artistsListToDisplay.get(0), firstArtistTextView);
+        setTextAsync(artistsListToDisplay.get(1), secondArtistTextView);
+        setTextAsync(artistsListToDisplay.get(2), thirdArtistTextView);
+        setTextAsync(artistsListToDisplay.get(3), fourthArtistTextView);
+        setTextAsync(artistsListToDisplay.get(4), fifthArtistTextView);
 
-        String formatted = StartingWrappedScreen.getArtistsToDisplay().toString().replace("[", " ").replace("]", "").replace(",", "\n");
-        setTextAsync(formatted, artistsTextView); // this is where the lists of artit previously calculated are finally displayed
+
         Button getTracksButton = (Button) findViewById(R.id.get_top_tracks);
         getTracksButton.setOnClickListener((v) -> {
             mediaPlayer.stop();

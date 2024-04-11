@@ -2,6 +2,7 @@ package com.example.ourspotifyapp.loginScreen;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -47,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                if (user.equals("user") && pass.equals("pass")) {
+                   Log.d("+++++++++++++++++++++", "Should be switching to Home Activity, login was successful");
                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                    startActivity(intent);
                } else {
@@ -58,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("---------------------", "Should be switching to Main, back button was selected");
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             }

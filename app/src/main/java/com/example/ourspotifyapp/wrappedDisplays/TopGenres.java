@@ -64,7 +64,15 @@ public class TopGenres extends AppCompatActivity {
 //            return insets;
 //        });
 
-        TextView topGenresTextView = findViewById(R.id.top_genres_text_view);
+        TextView firstTopGenresTextView = findViewById(R.id.top1_genres_text_view);
+        TextView secondTopGenresTextView = findViewById(R.id.top2_genres_text_view);
+        TextView thirdTopGenresTextView = findViewById(R.id.top3_genres_text_view);
+        TextView fourthTopGenresTextView = findViewById(R.id.top4_genres_text_view);
+        TextView fifthTopGenresTextView = findViewById(R.id.top5_genres_text_view);
+
+
+
+
         Button returnToStart = (Button) findViewById(R.id.returnToStart);
 
         Map<String, String> trackToId = StartingWrappedScreen.getTrackToId();
@@ -98,7 +106,12 @@ public class TopGenres extends AppCompatActivity {
         }
 
         List<String> genresToDisplay = StartingWrappedScreen.getTopGenres();
-        setTextAsync(genresToDisplay.toString().replace("[", " ").replace("]", "").replace(",", "\n"), topGenresTextView);
+//        setTextAsync(genresToDisplay.toString().replace("[", " ").replace("]", "").replace(",", "\n"), topGenresTextView);
+        setTextAsync(genresToDisplay.get(0), firstTopGenresTextView);
+        setTextAsync(genresToDisplay.get(1), secondTopGenresTextView);
+        setTextAsync(genresToDisplay.get(2), thirdTopGenresTextView);
+        setTextAsync(genresToDisplay.get(3), fourthTopGenresTextView);
+        setTextAsync(genresToDisplay.get(4), fifthTopGenresTextView);
 
         returnToStart.setOnClickListener((v) -> {
 

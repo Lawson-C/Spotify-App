@@ -108,9 +108,19 @@ public class TopTracks extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        TextView topTracksTextView = findViewById(R.id.top_tracks_text_view);
-        String formatted = StartingWrappedScreen.getTopTracksToDisplay().toString().replace("[", "").replace("]", "").replace(",", "\n");
-        setTextAsync(formatted, topTracksTextView);
+        TextView firstTopTracksTextView = findViewById(R.id.top1_tracks_text_view);
+        TextView secondTopTracksTextView = findViewById(R.id.top2_tracks_text_view);
+        TextView thirdTopTracksTextView = findViewById(R.id.top3_tracks_text_view);
+        TextView fourthTopTracksTextView = findViewById(R.id.top4_tracks_text_view);
+        TextView fifthTopTracksTextView = findViewById(R.id.top5_tracks_text_view);
+        List<String> tracksToDisplay = StartingWrappedScreen.getTopTracksToDisplay();
+//        String formatted = StartingWrappedScreen.getTopTracksToDisplay().toString().replace("[", "").replace("]", "").replace(",", "\n");
+//        setTextAsync(formatted, topTracksTextView);
+        setTextAsync(tracksToDisplay.get(0), firstTopTracksTextView);
+        setTextAsync(tracksToDisplay.get(1), secondTopTracksTextView);
+        setTextAsync(tracksToDisplay.get(2), thirdTopTracksTextView);
+        setTextAsync(tracksToDisplay.get(3), fourthTopTracksTextView);
+        setTextAsync(tracksToDisplay.get(4), fifthTopTracksTextView);
 
         getGenresButton.setOnClickListener((v) -> {
             mediaPlayer.stop();
