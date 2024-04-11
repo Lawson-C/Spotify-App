@@ -79,6 +79,23 @@
             android:name=".accountSettingScreen.AccountSettingActivity"
             android:exported="true"
             android:theme="@style/Theme.SpotifyApp" />
+
+        <activity
+            android:name=".wrappedDisplays.PastHome"
+            android:exported="true"
+            android:theme="@style/Theme.SpotifyApp" />
+        <activity
+            android:name=".wrappedDisplays.PastTopArtists"
+            android:exported="true"
+            android:theme="@style/Theme.SpotifyApp" />
+        <activity
+            android:name=".wrappedDisplays.PastTopSongs"
+            android:exported="true"
+            android:theme="@style/Theme.SpotifyApp" />
+        <activity
+            android:name=".wrappedDisplays.PastTopGenres"
+            android:exported="true"
+            android:theme="@style/Theme.SpotifyApp" />
     </application>
 
 </manifest>

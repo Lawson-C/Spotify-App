@@ -2,7 +2,9 @@ package com.example.ourspotifyapp.ui;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.sqlite.SQLiteConstraintException;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +16,10 @@ import androidx.cardview.widget.CardView;
 
 import com.example.ourspotifyapp.MainActivity;
 import com.example.ourspotifyapp.R;
+import com.example.ourspotifyapp.database.LocalAccountEntry;
+import com.example.ourspotifyapp.database.StorageSystem;
+import com.example.ourspotifyapp.homeScreen.HomeActivity;
+import com.example.ourspotifyapp.loginScreen.LoginActivity;
 
 
 public class SignUpActivity extends AppCompatActivity {
@@ -25,7 +31,6 @@ public class SignUpActivity extends AppCompatActivity {
     CardView card;
 
     EditText passwordConfirm;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +53,33 @@ public class SignUpActivity extends AppCompatActivity {
                 String pass = password.getText().toString();
                 String confirmPassword = passwordConfirm.getText().toString();
 
-                if (user.equals("user") && pass.equals("pass") && confirmPassword.equals("pass")) {
-                    Toast.makeText(SignUpActivity.this, "Sign Up Successful!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(SignUpActivity.this, "Sign Up Failed!", Toast.LENGTH_SHORT).show();
+                if (!confirmPassword.equals(pass)) {
+                    Toast.makeText(SignUpActivity.this, "Passwords don't match!", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+
+                Log.d("signup", "we got here!");
+
+                String checkExist = "";
+
+                try {
+                    checkExist = StorageSystem.readLocalAccountValue(LocalAccountEntry.COLUMN_NAME, user, LocalAccountEntry.COLUMN_NAME);
+                    if (checkExist.equals(user)) {
+                        Log.d("signup", "exception for duplicate user");
+                        Toast.makeText(SignUpActivity.this, "User already exists!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                } catch (Exception e) {
+                    Log.d("signup", "user that doesn't exist wasn't found");
+                }
+
+                int smallUserHash = Math.abs( (short) user.hashCode());
+                StorageSystem.writeLocalAccount(smallUserHash, user, pass, 0);
+
+                LoginActivity.currentUserHash = smallUserHash;
+
+                Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
+                startActivity(intent);
             }
         });
     }

@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.ourspotifyapp.database.StorageSystem;
 import com.example.ourspotifyapp.loginScreen.LoginActivity;
 import com.example.ourspotifyapp.ui.SignUpActivity;
 
@@ -19,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
+
+        StorageSystem.init(getApplicationContext());
+
         loginButton = findViewById(R.id.loginButton);
         signupButton = findViewById(R.id.signupButton);
         loginButton.setOnClickListener(v -> openLoginActivity());
