@@ -2,6 +2,7 @@ package com.example.ourspotifyapp.loginScreen;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.example.ourspotifyapp.R;
+import com.example.ourspotifyapp.database.LocalAccountEntry;
 import com.example.ourspotifyapp.wrappedDisplays.StartingWrappedScreen;
 import com.example.ourspotifyapp.MainActivity;
 import com.example.ourspotifyapp.database.StorageSystem;
@@ -24,6 +26,8 @@ public class LoginActivity extends AppCompatActivity {
     Button loginButton;
     Button backButton;
     CardView card;
+
+    public static int currentUserHash = -1;
 
     Button temporaryBtn; // get rid of this later
 
@@ -45,8 +49,15 @@ public class LoginActivity extends AppCompatActivity {
                String user = username.getText().toString();
                String pass = password.getText().toString();
 
+               String checkPass = "";
+               try {
+                   checkPass = StorageSystem.readLocalAccountValue(LocalAccountEntry.COLUMN_NAME, user, LocalAccountEntry.COLUMN_PASSWORD);
+               } catch (Exception e) {
+                   Log.d("login exception", "something happened? " + e);
+               }
 
-               if (user.equals("user") && pass.equals("pass")) {
+               if (pass.equals(checkPass)) {
+                   currentUserHash = Math.abs( (short) user.hashCode());
                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                    startActivity(intent);
                } else {
