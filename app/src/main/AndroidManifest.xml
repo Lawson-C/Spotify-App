@@ -82,6 +82,11 @@
             android:name=".accountSettingScreen.AccountSettingActivity"
             android:exported="true"
             android:theme="@style/Theme.SpotifyApp" />
+
+        <activity
+            android:name=".pastSummaries.PastHome"
+            android:exported="true"
+            android:theme="@style/Theme.SpotifyApp" />
     </application>
 
 </manifest>
