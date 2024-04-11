@@ -90,6 +90,22 @@
             android:name=".accountSettingScreen.AccountSettingActivity"
             android:exported="true"
             android:theme="@style/Theme.SpotifyApp" />
+        <activity
+            android:name=".dataSettingScreen.DataSettingActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SpotifyApp" />
+        <activity
+            android:name=".wrappedSettingScreen.WrappedSettingActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SpotifyApp" />
+        <activity
+            android:name=".notifScreen.NotifSettingActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SpotifyApp" />
+        <activity
+            android:name=".displaySettingScreen.DisplaySettingsActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SpotifyApp" />
 
         <activity
             android:name=".wrappedDisplays.PastHome"
