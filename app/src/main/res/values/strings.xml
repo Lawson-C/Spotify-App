@@ -78,4 +78,5 @@
     <string name="new_password">New Password</string>
     <string name="old_password">Old Password</string>
     <string name="are_you_sure">Are you sure?</string>
+    <string name="generate_wrapped">Generate Wrapped Summary</string>
 </resources>

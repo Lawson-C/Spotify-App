@@ -4,68 +4,118 @@
     android:id="@+id/top_artists_display"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".wrappedDisplays.TopArtists">
+    tools:context=".wrappedDisplays.TopArtists"
+    android:background="@color/black">
 
     <LinearLayout
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/spotify_green"
         android:orientation="vertical"
+        android:gravity="center"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="243dp">
 
-<!--        <TextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_>-->
-<!--            -->
-<!--        </TextView>-->
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
+                android:layout_marginTop="15dp"
+                android:background="@color/spotify_green"
+                android:gravity="center"
+                android:orientation="vertical"
                 android:text="YOUR TOP 5 ARTISTS"
+                android:textColor="@color/white"
                 android:textSize="30dp"
-
-                />
+                android:textStyle="bold" />
 
         </LinearLayout>
+
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="492dp">
+            android:layout_width="match_parent"
+            android:layout_height="460dp"
+            android:layout_marginTop="60dp"
+            android:gravity="center"
+            android:background="@color/white"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/top_artists_text_view"
+                android:id="@+id/top1_artists_text_view"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="80dp"
+                android:gravity="center"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:textSize="28dp"
-                android:text="Should Be Filled in with top artists" />
+                android:text="1st Artist"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/top2_artists_text_view"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="2nd Artist"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/top3_artists_text_view"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="3rd Artist"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/top4_artists_text_view"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="4th Artist"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/top5_artists_text_view"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="5th Artist"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="49dp">
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-<!--        <LinearLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="vertical">-->
 
-            <Button
-                android:id="@+id/get_top_tracks"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:text="Get Top Songs" />
-<!--        </LinearLayout>-->
+        <Button
+            android:id="@+id/get_top_tracks"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:backgroundTint="@null"
+            android:background="@drawable/white_button_border"
+            android:textColor="@color/dark_gray"
+            android:text="Get Top Songs" />
+        <!--        </LinearLayout>-->
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

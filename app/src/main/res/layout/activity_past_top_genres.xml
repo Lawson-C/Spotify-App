@@ -1,10 +1,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/top_tracks_display"
+    android:id="@+id/activity_top_genres"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".wrappedDisplays.TopTracks"
+    tools:context=".wrappedDisplays.TopGenres"
     android:background="@color/black">
 
     <LinearLayout
@@ -15,7 +15,7 @@
         android:gravity="center"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="243dp"
-        android:background="@color/dark_purple">
+        android:background="@color/black">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,11 +26,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:background="@color/dark_purple"
+                android:background="@color/black"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:text="YOUR TOP 5 TRACKS"
-                android:textColor="@color/purple_200"
+                android:text="YOUR TOP 5 GENRES"
+                android:textColor="@color/spotify_green"
                 android:textSize="30dp"
                 android:textStyle="bold" />
 
@@ -41,62 +41,62 @@
             android:layout_height="460dp"
             android:layout_marginTop="60dp"
             android:gravity="center"
-            android:background="@color/purple_200"
+            android:background="@color/dark_gray"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/top1_tracks_text_view"
+                android:id="@+id/top1_genres_text_view"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:textColor="@color/white"
-                android:text="1st Track"
+                android:text="1st Gene"
                 android:textSize="25dp" />
 
             <TextView
-                android:id="@+id/top2_tracks_text_view"
+                android:id="@+id/top2_genres_text_view"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:textColor="@color/white"
-                android:text="2nd Track"
+                android:text="2nd Genre"
                 android:textSize="25dp" />
 
             <TextView
-                android:id="@+id/top3_tracks_text_view"
+                android:id="@+id/top3_genres_text_view"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:textColor="@color/white"
-                android:text="3rd Track"
+                android:text="3rd Genre"
                 android:textSize="25dp" />
 
             <TextView
-                android:id="@+id/top4_tracks_text_view"
+                android:id="@+id/top4_genres_text_view"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:textColor="@color/white"
-                android:text="4th Track"
+                android:text="4th Genre"
                 android:textSize="25dp" />
 
             <TextView
-                android:id="@+id/top5_tracks_text_view"
+                android:id="@+id/top5_genres_text_view"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:textColor="@color/white"
-                android:text="5th Track"
+                android:text="5th Genre"
                 android:textSize="25dp" />
         </LinearLayout>
 
@@ -106,15 +106,17 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+
         <Button
-            android:id="@+id/embedded_game"
+            android:id="@+id/returnToStart"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             app:backgroundTint="@null"
-            android:background="@drawable/purple_button_border"
+            android:background="@drawable/button_border"
             android:textColor="@color/white"
-            android:text="Embedded Game" />
+            android:text="Return To Start" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

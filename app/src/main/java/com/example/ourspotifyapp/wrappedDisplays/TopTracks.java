@@ -53,16 +53,6 @@ import okhttp3.Response;
 
 public class TopTracks extends AppCompatActivity {
 
-    public static final String CLIENT_ID = "631dbb12d2b642bebb1e019886c20525";
-    public static final String REDIRECT_URI = "com.example.ourspotifyapp://auth";
-    public static final int AUTH_TOKEN_REQUEST_CODE = 0;
-    public static final int AUTH_CODE_REQUEST_CODE = 1;
-    private final OkHttpClient mOkHttpClient = new OkHttpClient();
-    private String mAccessToken, mAccessCode;
-    private static boolean responseReceived = false;
-    private Call mCall;
-    private AppBarConfiguration appBarConfiguration;
-    private ActivityTopTracksBinding binding;
     private MediaPlayer mediaPlayer;
 
     @Override
@@ -77,7 +67,7 @@ public class TopTracks extends AppCompatActivity {
             artistNameList.add(count + ": " + trackName);
             count++;
         }
-        Button getGenresButton = (Button) findViewById(R.id.get_top_genres);
+        Button getGameButton = (Button) findViewById(R.id.embedded_game);
 
         count = 1;
         String trackIdToPlay = "";
@@ -108,13 +98,23 @@ public class TopTracks extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        TextView topTracksTextView = findViewById(R.id.top_tracks_text_view);
-        String formatted = StartingWrappedScreen.getTopTracksToDisplay().toString().replace("[", "").replace("]", "").replace(",", "\n");
-        setTextAsync(formatted, topTracksTextView);
+        TextView firstTopTracksTextView = findViewById(R.id.top1_tracks_text_view);
+        TextView secondTopTracksTextView = findViewById(R.id.top2_tracks_text_view);
+        TextView thirdTopTracksTextView = findViewById(R.id.top3_tracks_text_view);
+        TextView fourthTopTracksTextView = findViewById(R.id.top4_tracks_text_view);
+        TextView fifthTopTracksTextView = findViewById(R.id.top5_tracks_text_view);
+        List<String> tracksToDisplay = StartingWrappedScreen.getTopTracksToDisplay();
+//        String formatted = StartingWrappedScreen.getTopTracksToDisplay().toString().replace("[", "").replace("]", "").replace(",", "\n");
+//        setTextAsync(formatted, topTracksTextView);
+        setTextAsync(tracksToDisplay.get(0), firstTopTracksTextView);
+        setTextAsync(tracksToDisplay.get(1), secondTopTracksTextView);
+        setTextAsync(tracksToDisplay.get(2), thirdTopTracksTextView);
+        setTextAsync(tracksToDisplay.get(3), fourthTopTracksTextView);
+        setTextAsync(tracksToDisplay.get(4), fifthTopTracksTextView);
 
-        getGenresButton.setOnClickListener((v) -> {
+        getGameButton.setOnClickListener((v) -> {
             mediaPlayer.stop();
-            startActivity(new Intent(TopTracks.this, TopGenres.class));
+            startActivity(new Intent(TopTracks.this, EmbeddedGame.class));
         });
 
     }
