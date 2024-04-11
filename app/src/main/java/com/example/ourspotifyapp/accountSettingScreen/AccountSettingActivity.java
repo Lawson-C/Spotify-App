@@ -45,10 +45,11 @@ public class AccountSettingActivity extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText oldUser = findViewById(R.id.oldPasswordDialog);
-                EditText newUser = findViewById(R.id.newPasswordDialog);
+                EditText oldUser = popUp.findViewById(R.id.oldUserDialog);
+                EditText newUser = popUp.findViewById(R.id.newUserDialog);
                 String oldUserText = oldUser.getText().toString();
                 String newUserText = newUser.getText().toString();
+                popUp.dismiss();
                 /*
                 /////////////////////////////////////////////////////////
 
@@ -77,10 +78,11 @@ public class AccountSettingActivity extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText oldPW = findViewById(R.id.oldPasswordText);
-                EditText newPW = findViewById(R.id.newPasswordText);
+                EditText oldPW = popUp.findViewById(R.id.oldPasswordText);
+                EditText newPW = popUp.findViewById(R.id.newPasswordText);
                 String oldPWText = oldPW.getText().toString();
                 String newPWText = newPW.getText().toString();
+                popUp.dismiss();
                 /*
                 /////////////////////////////////////////////////////////
 
@@ -124,7 +126,6 @@ public class AccountSettingActivity extends AppCompatActivity {
                 popUp.dismiss();
             }
         });
-
     }
     private void backArrowMethod() {
         Intent intent = new Intent(this, SettingsActivity.class);

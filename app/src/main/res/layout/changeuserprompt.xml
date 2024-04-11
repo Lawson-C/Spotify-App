@@ -38,7 +38,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
                 <EditText
-                    android:id="@+id/oldPasswordDialog"
+                    android:id="@+id/oldUserDialog"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginStart="10dp"
@@ -67,7 +67,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/userNameOld">
                 <EditText
-                    android:id="@+id/newPasswordDialog"
+                    android:id="@+id/newUserDialog"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginStart="10dp"

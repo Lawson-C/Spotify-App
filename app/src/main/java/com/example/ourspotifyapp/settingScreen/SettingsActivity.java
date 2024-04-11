@@ -21,19 +21,23 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
-        ConstraintLayout accountScreen = findViewById(R.id.accountconstraintLayout);
+
         ConstraintLayout dataScreen = findViewById(R.id.dataconstraintLayout);
+        ConstraintLayout accountScreen = findViewById(R.id.accountconstraintLayout);
+
         ConstraintLayout wrappedScreen = findViewById(R.id.wrappedConstraintLayoutSettings);
         ConstraintLayout notifScreen = findViewById(R.id.notifsconstraintLayout);
         ConstraintLayout displayScreen = findViewById(R.id.displayConstraintLayout);
         ImageView backArrow = findViewById(R.id.backButtonSettings);
 
-        accountScreen.setOnClickListener(v -> openAccountSettings());
+        backArrow.setOnClickListener(v -> backArrowMethod());
         dataScreen.setOnClickListener(v -> openDataSettings());
+        accountScreen.setOnClickListener(v -> openAccountSettings());
+
         wrappedScreen.setOnClickListener(v -> openWrappedSettings());
         notifScreen.setOnClickListener(v -> openNotifSettings());
         displayScreen.setOnClickListener(v -> openDisplaySettings());
-        backArrow.setOnClickListener(v -> backArrowMethod());
+
     }
 
     private void openDisplaySettings() {
@@ -45,7 +49,6 @@ public class SettingsActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NotifSettingActivity.class);
         startActivity(intent);
     }
-
     private void openWrappedSettings() {
         Intent intent = new Intent(this, WrappedSettingActivity.class);
         startActivity(intent);
