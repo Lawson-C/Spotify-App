@@ -73,10 +73,9 @@ public class SignUpActivity extends AppCompatActivity {
                     Log.d("signup", "user that doesn't exist wasn't found");
                 }
 
-                int smallUserHash = Math.abs( (short) user.hashCode());
-                StorageSystem.writeLocalAccount(smallUserHash, user, pass, 0);
+                StorageSystem.writeLocalAccount(user, pass, 0);
 
-                LoginActivity.currentUserHash = smallUserHash;
+                LoginActivity.currentUserID = Integer.parseInt(StorageSystem.readLocalAccountValue(LocalAccountEntry.COLUMN_NAME, user, LocalAccountEntry.COLUMN_ID));
 
                 Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
                 startActivity(intent);

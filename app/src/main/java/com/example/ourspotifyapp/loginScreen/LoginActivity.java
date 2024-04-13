@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     Button backButton;
     CardView card;
 
-    public static int currentUserHash = -1;
+    public static int currentUserID = -1;
 
     Button temporaryBtn; // get rid of this later
 
@@ -58,8 +58,7 @@ public class LoginActivity extends AppCompatActivity {
                }
 
                if (pass.equals(checkPass)) {
-                   String hashId = StorageSystem.readLocalAccountValue(LocalAccountEntry.COLUMN_NAME, user, LocalAccountEntry.COLUMN_ID);
-                   currentUserHash = Integer.valueOf(hashId);
+                   currentUserID = Integer.parseInt(StorageSystem.readLocalAccountValue(LocalAccountEntry.COLUMN_NAME, user, LocalAccountEntry.COLUMN_ID));
                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                    startActivity(intent);
                } else {

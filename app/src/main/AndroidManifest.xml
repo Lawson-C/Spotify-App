@@ -51,7 +51,6 @@
             android:name=".wrappedDisplays.TopArtists"
             android:exported="true">
             <intent-filter>
-                >
                 <data
                     android:host="auth"
                     android:scheme="com.example.ourspotifyapp" />

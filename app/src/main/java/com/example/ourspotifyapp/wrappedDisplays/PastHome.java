@@ -76,12 +76,11 @@ public class PastHome extends AppCompatActivity {
                     timeFrame = 12;
                 }
 
-                int idSearch = Integer.valueOf(String.valueOf(yearDay) + String.valueOf(timeFrame) + String.valueOf(LoginActivity.currentUserHash));
-                Log.d("our id", String.valueOf(idSearch));
+                Log.d("our id", String.valueOf(LoginActivity.currentUserID));
                 try {
-                    String[][] songDataQuery = StorageSystem.readWrappedEntry(WrappedSongEntry.TABLE_NAME, "id", String.valueOf(idSearch));
-                    String[][] artistDataQuery = StorageSystem.readWrappedEntry(WrappedArtistEntry.TABLE_NAME, "id", String.valueOf(idSearch));
-                    String[][] genreDataQuery = StorageSystem.readWrappedEntry(WrappedGenreEntry.TABLE_NAME, "id", String.valueOf(idSearch));
+                    String[][] songDataQuery = StorageSystem.readWrappedEntry(WrappedSongEntry.TABLE_NAME, WrappedSongEntry.COLUMN_ACCOUNT_ID, String.valueOf(LoginActivity.currentUserID));
+                    String[][] artistDataQuery = StorageSystem.readWrappedEntry(WrappedArtistEntry.TABLE_NAME, WrappedArtistEntry.COLUMN_ACCOUNT_ID, String.valueOf(LoginActivity.currentUserID));
+                    String[][] genreDataQuery = StorageSystem.readWrappedEntry(WrappedGenreEntry.TABLE_NAME, WrappedGenreEntry.COLUMN_ACCOUNT_ID, String.valueOf(LoginActivity.currentUserID));
 
                     Log.d("song data", String.join(", ", songDataQuery[0]));
                     Log.d("artist data", String.join(", ", artistDataQuery[0]));

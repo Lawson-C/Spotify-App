@@ -1,7 +1,6 @@
 package com.example.ourspotifyapp.accountSettingScreen;
 import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,11 +17,6 @@ import com.example.ourspotifyapp.database.LocalAccountEntry;
 import com.example.ourspotifyapp.database.StorageSystem;
 import com.example.ourspotifyapp.loginScreen.LoginActivity;
 import com.example.ourspotifyapp.settingScreen.SettingsActivity;
-import com.example.ourspotifyapp.ui.SignUpActivity;
-import com.example.ourspotifyapp.wrappedDisplays.PastHome;
-import com.example.ourspotifyapp.wrappedDisplays.PastTopArtists;
-
-import java.util.Objects;
 
 public class AccountSettingActivity extends AppCompatActivity {
     @Override
@@ -63,13 +57,13 @@ public class AccountSettingActivity extends AppCompatActivity {
                     return;
                 }
 
-                String realOldUser = StorageSystem.readLocalAccountValue(LocalAccountEntry.COLUMN_ID, String.valueOf(LoginActivity.currentUserHash), LocalAccountEntry.COLUMN_NAME);
+                String realOldUser = StorageSystem.readLocalAccountFromID(LoginActivity.currentUserID, LocalAccountEntry.COLUMN_NAME);
                 if (!oldUserText.equals(realOldUser)) {
                     Toast.makeText(AccountSettingActivity.this, "Old username doesn't match!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                StorageSystem.setIntLocalAccount(LoginActivity.currentUserHash, LocalAccountEntry.COLUMN_NAME, newUserText);
+                StorageSystem.setLocalAccountFromID(LoginActivity.currentUserID, LocalAccountEntry.COLUMN_NAME, newUserText);
                 Toast.makeText(AccountSettingActivity.this, "Username updated!", Toast.LENGTH_SHORT).show();
 
                 popUp.dismiss();
@@ -103,13 +97,13 @@ public class AccountSettingActivity extends AppCompatActivity {
                     return;
                 }
 
-                String realOldPW = StorageSystem.readLocalAccountValue(LocalAccountEntry.COLUMN_ID, String.valueOf(LoginActivity.currentUserHash), LocalAccountEntry.COLUMN_PASSWORD);
+                String realOldPW = StorageSystem.readLocalAccountFromID(LoginActivity.currentUserID, LocalAccountEntry.COLUMN_PASSWORD);
                 if (!oldPWText.equals(realOldPW)) {
                     Toast.makeText(AccountSettingActivity.this, "Old password doesn't match!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                StorageSystem.setIntLocalAccount(LoginActivity.currentUserHash, LocalAccountEntry.COLUMN_PASSWORD, newPWText);
+                StorageSystem.setLocalAccountFromID(LoginActivity.currentUserID, LocalAccountEntry.COLUMN_PASSWORD, newPWText);
                 Toast.makeText(AccountSettingActivity.this, "Password updated!", Toast.LENGTH_SHORT).show();
 
                 popUp.dismiss();
@@ -133,7 +127,7 @@ public class AccountSettingActivity extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StorageSystem.deleteLocalAccount(LoginActivity.currentUserHash);
+                StorageSystem.deleteLocalAccountFromID(LoginActivity.currentUserID);
                 startActivity(new Intent(AccountSettingActivity.this, MainActivity.class));
             }
         });
