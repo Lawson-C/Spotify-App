@@ -51,7 +51,7 @@ public class StorageSystem extends SQLiteOpenHelper {
                 WrappedGenreEntry.COLUMN_ACCOUNT_ID + " TEXT, " +
                 WrappedGenreEntry.COLUMN_NAME + " INTEGER," +
                 WrappedGenreEntry.COLUMN_DURATION + " INTEGER," +
-                WrappedGenreEntry.COLUMN_DATE + "INTEGER)"
+                WrappedGenreEntry.COLUMN_DATE + " INTEGER)"
         );
     }
 
