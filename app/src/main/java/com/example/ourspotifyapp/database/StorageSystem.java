@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 
 public class StorageSystem extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "AppData.sqlite";
-    public static final int DATABASE_VERSION = 7;
+    public static final int DATABASE_VERSION = 10;
 
     private static StorageSystem instance;
     private static SQLiteDatabase database;
@@ -33,6 +33,7 @@ public class StorageSystem extends SQLiteOpenHelper {
                         WrappedArtistEntry.COLUMN_RANK + " INTEGER PRIMARY KEY, " +
                         WrappedArtistEntry.COLUMN_NAME + " TEXT," +
                         WrappedArtistEntry.COLUMN_ACCOUNT_ID + " INTEGER," +
+                        WrappedArtistEntry.COLUMN_DURATION + " INTEGER," +
                         WrappedArtistEntry.COLUMN_DATE + " INTEGER)"
         );
         db.execSQL(
@@ -41,13 +42,16 @@ public class StorageSystem extends SQLiteOpenHelper {
                         WrappedSongEntry.COLUMN_TITLE + " TEXT," +
                         WrappedSongEntry.COLUMN_ARTIST + " TEXT," +
                         WrappedSongEntry.COLUMN_ACCOUNT_ID + " INTEGER," +
+                        WrappedSongEntry.COLUMN_DURATION + " INTEGER," +
                         WrappedSongEntry.COLUMN_DATE + " INTEGER," +
                         WrappedSongEntry.COLUMN_AUDIO + " INTEGER)"
         );
         db.execSQL("CREATE TABLE " + WrappedGenreEntry.TABLE_NAME + " (" +
                 WrappedGenreEntry.COLUMN_RANK + " INTEGER PRIMARY KEY, " +
                 WrappedGenreEntry.COLUMN_ACCOUNT_ID + " TEXT, " +
-                WrappedGenreEntry.COLUMN_NAME + " INTEGER)"
+                WrappedGenreEntry.COLUMN_NAME + " INTEGER," +
+                WrappedGenreEntry.COLUMN_DURATION + " INTEGER," +
+                WrappedGenreEntry.COLUMN_DATE + "INTEGER)"
         );
     }
 
@@ -160,7 +164,7 @@ public class StorageSystem extends SQLiteOpenHelper {
                 LocalAccountEntry.TABLE_NAME,
                 content,
                 LocalAccountEntry.COLUMN_ID + " = ?",
-                new String[] {"" + id}
+                new String[]{"" + id}
         );
     }
 
