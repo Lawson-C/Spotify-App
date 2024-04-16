@@ -34,6 +34,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import com.example.ourspotifyapp.R;
@@ -60,7 +61,7 @@ public class StartingWrappedScreen extends AppCompatActivity {
     String dataBaseToken;
     String dataBaseCode;
 
-    static Map<String, String> genreCount = new HashMap<>();
+    static Map<String, String> genreCount = new LinkedHashMap<>();
 
     private final OkHttpClient mOkHttpClient = new OkHttpClient();
     private static boolean responseReceived = false;
@@ -70,13 +71,13 @@ public class StartingWrappedScreen extends AppCompatActivity {
     static String desired_time_frame;
     static boolean acceptBtnSelected = false;
 
-    static Map<String, String> artistToId = new HashMap<>();
+    static Map<String, String> artistToId = new LinkedHashMap<>();
     static List<String> artistsToDisplay = new ArrayList<>();
 
-    private static Map<String, String> trackToId = new HashMap<>();
+    private static Map<String, String> trackToId = new LinkedHashMap<>();
     private static ArrayList<String> topTracksToDisplay = new ArrayList<>();
 
-    private static Map<String, String> trackAudios = new HashMap<>();
+    private static Map<String, String> trackAudios = new LinkedHashMap<>();
 
     static List<String> topGenres = new ArrayList<>();
 
@@ -302,7 +303,7 @@ public class StartingWrappedScreen extends AppCompatActivity {
         Map<String, String> trackToId = new HashMap<>();
         // Create a request to get the user profile
         final Request request = new Request.Builder()
-                .url(String.format("https://api.spotify.com/v1/me/top/tracks?limit=5&time_range=%s", specified_time_range))
+                .url(String.format("https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=%s", specified_time_range))
                 .addHeader("Authorization", "Bearer " + mAccessToken)
                 .build();
 

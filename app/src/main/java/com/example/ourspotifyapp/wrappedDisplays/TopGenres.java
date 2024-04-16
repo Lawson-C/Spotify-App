@@ -103,11 +103,11 @@ public class TopGenres extends AppCompatActivity {
 
         saveData.setOnClickListener((v) -> {
 
-            String[] songNames = new String[5];
+            String[] songNames = new String[50];
             Map<String, String> trackIdMap = StartingWrappedScreen.getTrackToId();
 
             Log.d("track id map", trackIdMap.toString());
-            String[] audioUrls = new String[5];
+            String[] audioUrls = new String[50];
 
             int tracker = 0;
             for (Map.Entry<String, String> x : trackIdMap.entrySet()) {
@@ -148,9 +148,11 @@ public class TopGenres extends AppCompatActivity {
             Log.d("id", String.valueOf(LoginActivity.currentUserID));
 
             try {
-                String[] idCheck = StorageSystem.readWrappedEntryValue(WrappedSongEntry.TABLE_NAME, "id", String.valueOf(LoginActivity.currentUserID), WrappedSongEntry.COLUMN_RANK);
+                String[] fieldsToMatch = new String[] {WrappedSongEntry.COLUMN_ACCOUNT_ID, WrappedSongEntry.COLUMN_DATE, WrappedSongEntry.COLUMN_DURATION};
+                String[] matchedValues = new String[] {String.valueOf(LoginActivity.currentUserID), String.valueOf(date), String.valueOf(time_frame)};
+                String[][] idCheck = StorageSystem.readWrappedEntry(WrappedSongEntry.TABLE_NAME, fieldsToMatch, matchedValues);
                 if (idCheck.length != 0) {
-                    Log.d("duplicate?", String.join(", ", idCheck));
+                    Log.d("duplicate?", String.join(", ", matchedValues));
                     Toast.makeText(TopGenres.this, "Wrapped for today already exists!", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
@@ -161,7 +163,9 @@ public class TopGenres extends AppCompatActivity {
             }
 
             for (int i = 0; i < songNames.length; i++) {
-                StorageSystem.writeWrappedSong(songNames[i], artistNames[i], LoginActivity.currentUserID, date, time_frame, audioUrls[i]);
+                StorageSystem.writeWrappedSong(songNames[i], LoginActivity.currentUserID, date, time_frame, audioUrls[i]);
+            }
+            for (int i = 0; i < artistNames.length; i++) {
                 StorageSystem.writeWrappedArtist(artistNames[i], LoginActivity.currentUserID, date, time_frame);
                 StorageSystem.writeWrappedGenre(genreNames[i], LoginActivity.currentUserID, date, time_frame);
             }

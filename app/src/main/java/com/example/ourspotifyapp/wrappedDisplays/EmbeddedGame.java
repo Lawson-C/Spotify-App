@@ -32,15 +32,8 @@ public class EmbeddedGame extends AppCompatActivity {
         Button getGenresButton = (Button) findViewById(R.id.get_top_genres);
 
         Map<String, String> trackToId = StartingWrappedScreen.getTrackToId();
-        List<String> artistNameList = new ArrayList<>();
-        int count = 1;
-        for (Map.Entry<String, String> artist_id : trackToId.entrySet()) {
-            String trackName = artist_id.getKey();
-            artistNameList.add(count + ": " + trackName);
-            count++;
-        }
 
-        count = 1;
+        int count = 1;
         neededVal = ThreadLocalRandom.current().nextInt(1, 6);
         ArrayList<String> tracksToDisplay = new ArrayList<>();
         String trackIdToPlay = "";
@@ -84,7 +77,7 @@ public class EmbeddedGame extends AppCompatActivity {
         TextView fourthSongText = findViewById(R.id.song_guess_four_text);
         TextView fifthSongText = findViewById(R.id.song_guess_five_text);
 
-        // ArrayList<String> tracksToDisplay = (ArrayList) StartingWrappedScreen.getTopTracksToDisplay();
+        tracksToDisplay = (ArrayList) StartingWrappedScreen.getTopTracksToDisplay();
         Log.d("tracks", tracksToDisplay.toString());
 //        String formatted = StartingWrappedScreen.getTopTracksToDisplay().toString().replace("[", "").replace("]", "").replace(",", "\n");
 //        setTextAsync(formatted, topTracksTextView);

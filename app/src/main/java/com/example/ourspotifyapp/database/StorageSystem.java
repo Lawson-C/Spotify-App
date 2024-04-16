@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 
 public class StorageSystem extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "AppData.sqlite";
-    public static final int DATABASE_VERSION = 19;
+    public static final int DATABASE_VERSION = 26;
 
     private static StorageSystem instance;
     private static SQLiteDatabase database;
@@ -40,7 +40,6 @@ public class StorageSystem extends SQLiteOpenHelper {
                 "CREATE TABLE " + WrappedSongEntry.TABLE_NAME + " (" +
                         WrappedSongEntry.COLUMN_RANK + " INTEGER PRIMARY KEY, " +
                         WrappedSongEntry.COLUMN_TITLE + " TEXT," +
-                        WrappedSongEntry.COLUMN_ARTIST + " TEXT," +
                         WrappedSongEntry.COLUMN_ACCOUNT_ID + " INTEGER," +
                         WrappedSongEntry.COLUMN_DURATION + " INTEGER," +
                         WrappedSongEntry.COLUMN_DATE + " INTEGER," +
@@ -179,11 +178,10 @@ public class StorageSystem extends SQLiteOpenHelper {
     }
 
     // Wrapped Create
-    public static void writeWrappedSong(String title, String artist, int accountID, int date, int duration, String audioURL) {
+    public static void writeWrappedSong(String title, int accountID, int date, int duration, String audioURL) {
         ContentValues values = new ContentValues();
 
         values.put(WrappedSongEntry.COLUMN_TITLE, title);
-        values.put(WrappedSongEntry.COLUMN_ARTIST, artist);
         values.put(WrappedSongEntry.COLUMN_ACCOUNT_ID, accountID);
         values.put(WrappedSongEntry.COLUMN_DATE, date);
         values.put(WrappedSongEntry.COLUMN_DURATION, duration);
