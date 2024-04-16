@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 
 public class StorageSystem extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "AppData.sqlite";
-    public static final int DATABASE_VERSION = 10;
+    public static final int DATABASE_VERSION = 19;
 
     private static StorageSystem instance;
     private static SQLiteDatabase database;
