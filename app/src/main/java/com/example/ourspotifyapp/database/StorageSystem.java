@@ -46,12 +46,13 @@ public class StorageSystem extends SQLiteOpenHelper {
                         WrappedSongEntry.COLUMN_DATE + " INTEGER," +
                         WrappedSongEntry.COLUMN_AUDIO + " INTEGER)"
         );
-        db.execSQL("CREATE TABLE " + WrappedGenreEntry.TABLE_NAME + " (" +
-                WrappedGenreEntry.COLUMN_RANK + " INTEGER PRIMARY KEY, " +
-                WrappedGenreEntry.COLUMN_ACCOUNT_ID + " TEXT, " +
-                WrappedGenreEntry.COLUMN_NAME + " INTEGER," +
-                WrappedGenreEntry.COLUMN_DURATION + " INTEGER," +
-                WrappedGenreEntry.COLUMN_DATE + " INTEGER)"
+        db.execSQL(
+                "CREATE TABLE " + WrappedGenreEntry.TABLE_NAME + " (" +
+                        WrappedGenreEntry.COLUMN_RANK + " INTEGER PRIMARY KEY, " +
+                        WrappedGenreEntry.COLUMN_ACCOUNT_ID + " TEXT, " +
+                        WrappedGenreEntry.COLUMN_NAME + " INTEGER," +
+                        WrappedGenreEntry.COLUMN_DURATION + " INTEGER," +
+                        WrappedGenreEntry.COLUMN_DATE + " INTEGER)"
         );
     }
 
@@ -245,6 +246,28 @@ public class StorageSystem extends SQLiteOpenHelper {
                 null,
                 null,
                 null);
+
+        String[][] output = new String[cursor.getCount()][cursor.getColumnCount()];
+        for (int i = 0; i < cursor.getCount(); i++) {
+            if (!cursor.moveToNext()) break;
+            for (int j = 0; j < cursor.getColumnCount(); j++) {
+                output[i][j] = cursor.getString(j);
+            }
+        }
+        cursor.close();
+
+        return output;
+    }
+
+    public static String[][] readWrappedEntry(String table, String[] fieldsToMatch, String[] valuesToMatch) {
+        String sqlCMD = "SELECT * FROM " + table + " WHERE ";
+        for (int i = 0; i < fieldsToMatch.length; i++) {
+            sqlCMD += fieldsToMatch[i] + " = " + valuesToMatch[i];
+            if (i >= fieldsToMatch.length - 1)
+                break;
+            sqlCMD += " AND ";
+        }
+        Cursor cursor = database.rawQuery(sqlCMD, null);
 
         String[][] output = new String[cursor.getCount()][cursor.getColumnCount()];
         for (int i = 0; i < cursor.getCount(); i++) {
