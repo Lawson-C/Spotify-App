@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.ourspotifyapp.R;
 import com.example.ourspotifyapp.ui.SignUpActivity;
 
+import org.w3c.dom.Text;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +24,13 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class PastEmbeddedGame extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
-    private int neededVal = 0;
+    private int[] neededVals;
+    private int correctVal = 0;
+
+    private int points;
+    private TextView pointCounter;
+
+    private TextView firstSongText, secondSongText, thirdSongText, fourthSongText, fifthSongText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +40,13 @@ public class PastEmbeddedGame extends AppCompatActivity {
         Button getGenresButton = (Button) findViewById(R.id.get_top_genres);
 
 
-        neededVal = ThreadLocalRandom.current().nextInt(0, 5);
-        String previewUrl = PastHome.getUrlNames()[neededVal];
+        String[] tracksList = PastHome.getSongNames();
+        String[] urlList = PastHome.getUrlNames();
+
+        neededVals = ThreadLocalRandom.current().ints(0, 50).distinct().limit(5).toArray();
+        correctVal = ThreadLocalRandom.current().nextInt(0, 5);
+
+        String previewUrl = PastHome.getUrlNames()[neededVals[correctVal]];
 
         Log.d("url correct?", previewUrl);
         mediaPlayer = new MediaPlayer();
@@ -56,21 +69,22 @@ public class PastEmbeddedGame extends AppCompatActivity {
         Button fourthButton = findViewById(R.id.song_guess_four);
         Button fifthButton = findViewById(R.id.song_guess_five);
 
-        TextView firstSongText = findViewById(R.id.song_guess_one_text);
-        TextView secondSongText = findViewById(R.id.song_guess_two_text);
-        TextView thirdSongText = findViewById(R.id.song_guess_three_text);
-        TextView fourthSongText = findViewById(R.id.song_guess_four_text);
-        TextView fifthSongText = findViewById(R.id.song_guess_five_text);
+        firstSongText = findViewById(R.id.song_guess_one_text);
+        secondSongText = findViewById(R.id.song_guess_two_text);
+        thirdSongText = findViewById(R.id.song_guess_three_text);
+        fourthSongText = findViewById(R.id.song_guess_four_text);
+        fifthSongText = findViewById(R.id.song_guess_five_text);
+        pointCounter = findViewById(R.id.point_counter);
 
         String[] tracksToDisplay = PastHome.getSongNames();
 //        String formatted = StartingWrappedScreen.getTopTracksToDisplay().toString().replace("[", "").replace("]", "").replace(",", "\n");
 //        setTextAsync(formatted, topTracksTextView);
 
-        setTextAsync(tracksToDisplay[0], firstSongText);
-        setTextAsync(tracksToDisplay[1], secondSongText);
-        setTextAsync(tracksToDisplay[2], thirdSongText);
-        setTextAsync(tracksToDisplay[3], fourthSongText);
-        setTextAsync(tracksToDisplay[4], fifthSongText);
+        setTextAsync(tracksToDisplay[neededVals[0]], firstSongText);
+        setTextAsync(tracksToDisplay[neededVals[1]], secondSongText);
+        setTextAsync(tracksToDisplay[neededVals[2]], thirdSongText);
+        setTextAsync(tracksToDisplay[neededVals[3]], fourthSongText);
+        setTextAsync(tracksToDisplay[neededVals[4]], fifthSongText);
 
         getGenresButton.setOnClickListener((v) -> {
             mediaPlayer.stop();
@@ -78,8 +92,9 @@ public class PastEmbeddedGame extends AppCompatActivity {
         });
 
         firstButton.setOnClickListener((v) -> {
-            if (neededVal == 0) {
+            if (correctVal == 0) {
                 Toast.makeText(PastEmbeddedGame.this, "Right answer!", Toast.LENGTH_SHORT).show();
+                points++;
             } else {
                 Toast.makeText(PastEmbeddedGame.this, "Wrong answer!", Toast.LENGTH_SHORT).show();
             }
@@ -87,32 +102,36 @@ public class PastEmbeddedGame extends AppCompatActivity {
 
         });
         secondButton.setOnClickListener((v) -> {
-            if (neededVal == 1) {
+            if (correctVal == 1) {
                 Toast.makeText(PastEmbeddedGame.this, "Right answer!", Toast.LENGTH_SHORT).show();
+                points++;
             } else {
                 Toast.makeText(PastEmbeddedGame.this, "Wrong answer!", Toast.LENGTH_SHORT).show();
             }
             restartPlayer();
         });
         thirdButton.setOnClickListener((v) -> {
-            if (neededVal == 2) {
+            if (correctVal == 2) {
                 Toast.makeText(PastEmbeddedGame.this, "Right answer!", Toast.LENGTH_SHORT).show();
+                points++;
             } else {
                 Toast.makeText(PastEmbeddedGame.this, "Wrong answer!", Toast.LENGTH_SHORT).show();
             }
             restartPlayer();
         });
         fourthButton.setOnClickListener((v) -> {
-            if (neededVal == 3) {
+            if (correctVal == 3) {
                 Toast.makeText(PastEmbeddedGame.this, "Right answer!", Toast.LENGTH_SHORT).show();
+                points++;
             } else {
                 Toast.makeText(PastEmbeddedGame.this, "Wrong answer!", Toast.LENGTH_SHORT).show();
             }
             restartPlayer();
         });
         fifthButton.setOnClickListener((v) -> {
-            if (neededVal == 4) {
+            if (correctVal == 4) {
                 Toast.makeText(PastEmbeddedGame.this, "Right answer!", Toast.LENGTH_SHORT).show();
+                points++;
             } else {
                 Toast.makeText(PastEmbeddedGame.this, "Wrong answer!", Toast.LENGTH_SHORT).show();
             }
@@ -124,8 +143,10 @@ public class PastEmbeddedGame extends AppCompatActivity {
     private void restartPlayer() {
         mediaPlayer.stop();
 
-        neededVal = ThreadLocalRandom.current().nextInt(0, 5);
-        String previewUrl = PastHome.getUrlNames()[neededVal];
+        neededVals = ThreadLocalRandom.current().ints(0, 50).distinct().limit(5).toArray();
+        correctVal = ThreadLocalRandom.current().nextInt(0, 5);
+
+        String previewUrl = PastHome.getUrlNames()[neededVals[correctVal]];
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioAttributes(new AudioAttributes.Builder()
                 .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
@@ -139,6 +160,16 @@ public class PastEmbeddedGame extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        String[] tracksToDisplay = PastHome.getSongNames();
+        String displayPoints = "Points: " + String.valueOf(points);
+
+        setTextAsync(tracksToDisplay[neededVals[0]], firstSongText);
+        setTextAsync(tracksToDisplay[neededVals[1]], secondSongText);
+        setTextAsync(tracksToDisplay[neededVals[2]], thirdSongText);
+        setTextAsync(tracksToDisplay[neededVals[3]], fourthSongText);
+        setTextAsync(tracksToDisplay[neededVals[4]], fifthSongText);
+        setTextAsync(displayPoints, pointCounter);
     }
 
     private void setTextAsync(final String text, TextView textView) {

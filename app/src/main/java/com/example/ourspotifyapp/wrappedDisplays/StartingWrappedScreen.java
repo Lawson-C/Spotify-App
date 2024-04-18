@@ -71,13 +71,13 @@ public class StartingWrappedScreen extends AppCompatActivity {
     static String desired_time_frame;
     static boolean acceptBtnSelected = false;
 
-    static Map<String, String> artistToId = new LinkedHashMap<>();
+    static LinkedHashMap<String, String> artistToId = new LinkedHashMap<>();
     static List<String> artistsToDisplay = new ArrayList<>();
 
-    private static Map<String, String> trackToId = new LinkedHashMap<>();
+    private static LinkedHashMap<String, String> trackToId = new LinkedHashMap<>();
     private static ArrayList<String> topTracksToDisplay = new ArrayList<>();
 
-    private static Map<String, String> trackAudios = new LinkedHashMap<>();
+    private static LinkedHashMap<String, String> trackAudios = new LinkedHashMap<>();
 
     static List<String> topGenres = new ArrayList<>();
 
@@ -135,7 +135,7 @@ public class StartingWrappedScreen extends AppCompatActivity {
                 calculateTopGenres();
                 getAudioFiles();
 
-                Map<String, String> trackToId = StartingWrappedScreen.getTrackToId();
+                LinkedHashMap<String, String> trackToId = StartingWrappedScreen.getTrackToId();
                 int count = 1;
                 String trackIdToPlay = "";
                 Log.d("test", trackToId.toString());
@@ -211,12 +211,12 @@ public class StartingWrappedScreen extends AppCompatActivity {
     }
 
 
-    public Map<String, String> getTopArtists(String specified_time_range) {
+    public LinkedHashMap<String, String> getTopArtists(String specified_time_range) {
 
         Log.d("156: started getTopArtist", "getTopArtists: ");
         if (mAccessToken == null) {
             Toast.makeText(this, "You need to get an access token first!", Toast.LENGTH_SHORT).show();
-            return new HashMap<>(); // keeps it from continuing after this is printed
+            return new LinkedHashMap<>(); // keeps it from continuing after this is printed
         }
 
         final Request request = new Request.Builder()
@@ -295,12 +295,12 @@ public class StartingWrappedScreen extends AppCompatActivity {
         return artistToId; // returns map of artists to their ids to be used in database
     }
 
-    public Map<String, String> getTopTracks(String specified_time_range) {
+    public LinkedHashMap<String, String> getTopTracks(String specified_time_range) {
         if (mAccessToken == null) {
             Toast.makeText(this, "You need to get an access token first!", Toast.LENGTH_SHORT).show();
-            return new HashMap<>(); // keeps it from continuing after this is printed
+            return new LinkedHashMap<>(); // keeps it from continuing after this is printed
         }
-        Map<String, String> trackToId = new HashMap<>();
+        LinkedHashMap<String, String> trackToId = new LinkedHashMap<>();
         // Create a request to get the user profile
         final Request request = new Request.Builder()
                 .url(String.format("https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=%s", specified_time_range))
@@ -416,11 +416,11 @@ public class StartingWrappedScreen extends AppCompatActivity {
     public static void setArtistsToDisplay(List<String> artistsToDisplay) {
         StartingWrappedScreen.artistsToDisplay = artistsToDisplay;
     }
-    public static void setArtistToId(Map<String, String> artistToId) {
+    public static void setArtistToId(LinkedHashMap<String, String> artistToId) {
         StartingWrappedScreen.artistToId = artistToId;
     }
 
-    public static Map<String, String> getTrackToId() {
+    public static LinkedHashMap<String, String> getTrackToId() {
         return StartingWrappedScreen.trackToId;
     }
     public static ArrayList<String> getTopTracksToDisplay() {
@@ -429,14 +429,14 @@ public class StartingWrappedScreen extends AppCompatActivity {
     public static void setTopTracksToDisplay(ArrayList<String> topTracksToDisplay) {
         StartingWrappedScreen.topTracksToDisplay = topTracksToDisplay;
     }
-    public static void setTrackToId(Map<String, String> trackToId) {
+    public static void setTrackToId(LinkedHashMap<String, String> trackToId) {
         StartingWrappedScreen.trackToId = trackToId;
     }
 
-    public static Map<String, String> getTrackAudios() {
+    public static LinkedHashMap<String, String> getTrackAudios() {
         return StartingWrappedScreen.trackAudios;
     }
-    public static void setTrackAudios(Map<String, String> trackToId) {
+    public static void setTrackAudios(LinkedHashMap<String, String> trackToId) {
         StartingWrappedScreen.trackAudios = trackToId;
     }
 
@@ -606,10 +606,10 @@ public class StartingWrappedScreen extends AppCompatActivity {
 
                     try {
                         final String responseData = response.body().string();
-                        Log.d("tag response??", responseData);
+                        // Log.d("tag response??", responseData);
                         JSONObject jsonObject = new JSONObject(responseData);
                         String previewUrl = (String) jsonObject.get("preview_url");
-                        Log.d("what is the mp3 link?", previewUrl);
+                        // Log.d("what is the mp3 link?", previewUrl);
 
                         trackAudios.put(trackId, previewUrl);
 
