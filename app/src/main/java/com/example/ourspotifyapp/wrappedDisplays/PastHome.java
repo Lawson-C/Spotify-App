@@ -76,23 +76,42 @@ public class PastHome extends AppCompatActivity {
                     timeFrame = 12;
                 }
 
-                int idSearch = Integer.valueOf(String.valueOf(yearDay) + String.valueOf(timeFrame) + String.valueOf(LoginActivity.currentUserHash));
-                Log.d("our id", String.valueOf(idSearch));
+                Log.d("our id", String.valueOf(LoginActivity.currentUserID));
                 try {
-                    String[][] songDataQuery = StorageSystem.readWrappedEntry(WrappedSongEntry.TABLE_NAME, "id", String.valueOf(idSearch));
-                    String[][] artistDataQuery = StorageSystem.readWrappedEntry(WrappedArtistEntry.TABLE_NAME, "id", String.valueOf(idSearch));
-                    String[][] genreDataQuery = StorageSystem.readWrappedEntry(WrappedGenreEntry.TABLE_NAME, "id", String.valueOf(idSearch));
+                    String[] fieldsToMatch = new String[] { WrappedSongEntry.COLUMN_ACCOUNT_ID, WrappedSongEntry.COLUMN_DATE, WrappedSongEntry.COLUMN_DURATION};
+                    String[] matchedValues = new String[] { String.valueOf(LoginActivity.currentUserID), String.valueOf(yearDay), String.valueOf(timeFrame)};
+                    String[][] songDataQuery = StorageSystem.readWrappedEntry(WrappedSongEntry.TABLE_NAME, fieldsToMatch, matchedValues);
+                    String[][] artistDataQuery = StorageSystem.readWrappedEntry(WrappedArtistEntry.TABLE_NAME, fieldsToMatch, matchedValues);
+                    String[][] genreDataQuery = StorageSystem.readWrappedEntry(WrappedGenreEntry.TABLE_NAME, fieldsToMatch, matchedValues);
+
+                    Log.d("2d song data", Arrays.deepToString(songDataQuery));
+                    Log.d("2d artist data", Arrays.deepToString(artistDataQuery));
+                    Log.d("2d genre data", Arrays.deepToString(genreDataQuery));
+
 
                     Log.d("song data", String.join(", ", songDataQuery[0]));
                     Log.d("artist data", String.join(", ", artistDataQuery[0]));
                     Log.d("genre data", String.join(", ", genreDataQuery[0]));
                     String[] songData = songDataQuery[0];
-                    songNames = Arrays.copyOfRange(songData, 1, 6);
-                    urlNames = Arrays.copyOfRange(songData, 6, 11);
-                    String[] artistData = artistDataQuery[0];
-                    artistNames = Arrays.copyOfRange(artistData, 1, 6);
-                    String[] genreData = genreDataQuery[0];
-                    genreNames = Arrays.copyOfRange(genreData, 1, 6);
+                    songNames = new String[songDataQuery.length];
+                    urlNames = new String[songDataQuery.length];
+                    for (int i = 0; i < songDataQuery.length; i++) {
+                        songNames[i] = songDataQuery[i][1];
+                        urlNames[i] = songDataQuery[i][5];
+                    }
+                    artistNames = new String[artistDataQuery.length];
+                    for (int i = 0; i < artistDataQuery.length; i++) {
+                        artistNames[i] = artistDataQuery[i][1];
+                    }
+                    genreNames = new String[genreDataQuery.length];
+                    for (int i = 0; i < genreDataQuery.length; i++) {
+                        genreNames[i] = genreDataQuery[i][1];
+                    }
+
+                    Log.d("song data", String.join(", ", songNames));
+                    Log.d("url data", String.join(", ", urlNames));
+                    Log.d("artist data", String.join(", ", artistNames));
+                    Log.d("genre data", String.join(", ", genreNames));
 
                     Log.d("song names", String.join(", ", songNames));
                     Log.d("url names", String.join(", ", urlNames));

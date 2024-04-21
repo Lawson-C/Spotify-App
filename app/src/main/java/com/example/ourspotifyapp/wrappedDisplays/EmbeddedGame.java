@@ -22,7 +22,12 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class EmbeddedGame extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
-    private int neededVal = 0;
+    private int[] neededVals;
+    private int correctVal;
+
+    private int points;
+    private TextView pointCounter;
+    private TextView firstSongText, secondSongText, thirdSongText, fourthSongText, fifthSongText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,23 +37,17 @@ public class EmbeddedGame extends AppCompatActivity {
         Button getGenresButton = (Button) findViewById(R.id.get_top_genres);
 
         Map<String, String> trackToId = StartingWrappedScreen.getTrackToId();
-        List<String> artistNameList = new ArrayList<>();
-        int count = 1;
-        for (Map.Entry<String, String> artist_id : trackToId.entrySet()) {
-            String trackName = artist_id.getKey();
-            artistNameList.add(count + ": " + trackName);
-            count++;
-        }
 
-        count = 1;
-        neededVal = ThreadLocalRandom.current().nextInt(1, 6);
+        int count = 0;
+        neededVals = ThreadLocalRandom.current().ints(0, 50).distinct().limit(5).toArray();
+        correctVal = ThreadLocalRandom.current().nextInt(0, 5);
         ArrayList<String> tracksToDisplay = new ArrayList<>();
         String trackIdToPlay = "";
         Log.d("test", trackToId.toString());
         for (Map.Entry<String, String> x : trackToId.entrySet()) {
             Log.d("hmmmm", String.valueOf(x));
             tracksToDisplay.add(x.getKey());
-            if (count == neededVal) {
+            if (count == neededVals[correctVal]) {
                 trackIdToPlay = x.getValue();
             }
             count++;
@@ -78,22 +77,23 @@ public class EmbeddedGame extends AppCompatActivity {
         Button fourthButton = findViewById(R.id.song_guess_four);
         Button fifthButton = findViewById(R.id.song_guess_five);
 
-        TextView firstSongText = findViewById(R.id.song_guess_one_text);
-        TextView secondSongText = findViewById(R.id.song_guess_two_text);
-        TextView thirdSongText = findViewById(R.id.song_guess_three_text);
-        TextView fourthSongText = findViewById(R.id.song_guess_four_text);
-        TextView fifthSongText = findViewById(R.id.song_guess_five_text);
+        firstSongText = findViewById(R.id.song_guess_one_text);
+        secondSongText = findViewById(R.id.song_guess_two_text);
+        thirdSongText = findViewById(R.id.song_guess_three_text);
+        fourthSongText = findViewById(R.id.song_guess_four_text);
+        fifthSongText = findViewById(R.id.song_guess_five_text);
+        pointCounter = findViewById(R.id.point_counter);
 
-        // ArrayList<String> tracksToDisplay = (ArrayList) StartingWrappedScreen.getTopTracksToDisplay();
+        tracksToDisplay = (ArrayList) StartingWrappedScreen.getTopTracksToDisplay();
         Log.d("tracks", tracksToDisplay.toString());
 //        String formatted = StartingWrappedScreen.getTopTracksToDisplay().toString().replace("[", "").replace("]", "").replace(",", "\n");
 //        setTextAsync(formatted, topTracksTextView);
 
-        setTextAsync(tracksToDisplay.get(0), firstSongText);
-        setTextAsync(tracksToDisplay.get(1), secondSongText);
-        setTextAsync(tracksToDisplay.get(2), thirdSongText);
-        setTextAsync(tracksToDisplay.get(3), fourthSongText);
-        setTextAsync(tracksToDisplay.get(4), fifthSongText);
+        setTextAsync(tracksToDisplay.get(neededVals[0]), firstSongText);
+        setTextAsync(tracksToDisplay.get(neededVals[1]), secondSongText);
+        setTextAsync(tracksToDisplay.get(neededVals[2]), thirdSongText);
+        setTextAsync(tracksToDisplay.get(neededVals[3]), fourthSongText);
+        setTextAsync(tracksToDisplay.get(neededVals[4]), fifthSongText);
 
         getGenresButton.setOnClickListener((v) -> {
             mediaPlayer.stop();
@@ -101,8 +101,9 @@ public class EmbeddedGame extends AppCompatActivity {
         });
 
         firstButton.setOnClickListener((v) -> {
-            if (neededVal == 1) {
+            if (correctVal == 0) {
                 Toast.makeText(EmbeddedGame.this, "Right answer!", Toast.LENGTH_SHORT).show();
+                points++;
             } else {
                 Toast.makeText(EmbeddedGame.this, "Wrong answer!", Toast.LENGTH_SHORT).show();
             }
@@ -110,32 +111,36 @@ public class EmbeddedGame extends AppCompatActivity {
 
         });
         secondButton.setOnClickListener((v) -> {
-            if (neededVal == 2) {
+            if (correctVal == 1) {
                 Toast.makeText(EmbeddedGame.this, "Right answer!", Toast.LENGTH_SHORT).show();
+                points++;
             } else {
                 Toast.makeText(EmbeddedGame.this, "Wrong answer!", Toast.LENGTH_SHORT).show();
             }
             restartPlayer();
         });
         thirdButton.setOnClickListener((v) -> {
-            if (neededVal == 3) {
+            if (correctVal == 2) {
                 Toast.makeText(EmbeddedGame.this, "Right answer!", Toast.LENGTH_SHORT).show();
+                points++;
             } else {
                 Toast.makeText(EmbeddedGame.this, "Wrong answer!", Toast.LENGTH_SHORT).show();
             }
             restartPlayer();
         });
         fourthButton.setOnClickListener((v) -> {
-            if (neededVal == 4) {
+            if (correctVal == 3) {
                 Toast.makeText(EmbeddedGame.this, "Right answer!", Toast.LENGTH_SHORT).show();
+                points++;
             } else {
                 Toast.makeText(EmbeddedGame.this, "Wrong answer!", Toast.LENGTH_SHORT).show();
             }
             restartPlayer();
         });
         fifthButton.setOnClickListener((v) -> {
-            if (neededVal == 5) {
+            if (correctVal == 4) {
                 Toast.makeText(EmbeddedGame.this, "Right answer!", Toast.LENGTH_SHORT).show();
+                points++;
             } else {
                 Toast.makeText(EmbeddedGame.this, "Wrong answer!", Toast.LENGTH_SHORT).show();
             }
@@ -147,13 +152,14 @@ public class EmbeddedGame extends AppCompatActivity {
     private void restartPlayer() {
         mediaPlayer.stop();
         Map<String, String> trackToId = StartingWrappedScreen.getTrackToId();
-        int count = 1;
-        neededVal = ThreadLocalRandom.current().nextInt(1, 6);
+        int count = 0;
+        neededVals = ThreadLocalRandom.current().ints(0, 50).distinct().limit(5).toArray();
+        correctVal = ThreadLocalRandom.current().nextInt(0, 5);
         String trackIdToPlay = "";
         Log.d("test", trackToId.toString());
         for (Map.Entry<String, String> x : trackToId.entrySet()) {
             Log.d("hmmmm", String.valueOf(x));
-            if (count == neededVal) {
+            if (count == neededVals[correctVal]) {
                 trackIdToPlay = x.getValue();
             }
             count++;
@@ -176,6 +182,16 @@ public class EmbeddedGame extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        ArrayList<String> tracksToDisplay = StartingWrappedScreen.getTopTracksToDisplay();
+        String displayPoints = "Points: " + String.valueOf(points);
+
+        setTextAsync(tracksToDisplay.get(neededVals[0]), firstSongText);
+        setTextAsync(tracksToDisplay.get(neededVals[1]), secondSongText);
+        setTextAsync(tracksToDisplay.get(neededVals[2]), thirdSongText);
+        setTextAsync(tracksToDisplay.get(neededVals[3]), fourthSongText);
+        setTextAsync(tracksToDisplay.get(neededVals[4]), fifthSongText);
+        setTextAsync(displayPoints, pointCounter);
     }
 
     private void setTextAsync(final String text, TextView textView) {

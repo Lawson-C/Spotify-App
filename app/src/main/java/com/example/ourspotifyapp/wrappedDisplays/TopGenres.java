@@ -3,50 +3,26 @@ package com.example.ourspotifyapp.wrappedDisplays;
 import android.content.Intent;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.provider.Settings;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.ourspotifyapp.R;
-import com.example.ourspotifyapp.database.LocalAccountEntry;
 import com.example.ourspotifyapp.database.StorageSystem;
 import com.example.ourspotifyapp.database.WrappedSongEntry;
 import com.example.ourspotifyapp.loginScreen.LoginActivity;
-import com.example.ourspotifyapp.ui.SignUpActivity;
-import com.spotify.sdk.android.auth.AuthorizationClient;
-import com.spotify.sdk.android.auth.AuthorizationRequest;
-import com.spotify.sdk.android.auth.AuthorizationResponse;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 public class TopGenres extends AppCompatActivity {
 
@@ -67,8 +43,6 @@ public class TopGenres extends AppCompatActivity {
         TextView thirdTopGenresTextView = findViewById(R.id.top3_genres_text_view);
         TextView fourthTopGenresTextView = findViewById(R.id.top4_genres_text_view);
         TextView fifthTopGenresTextView = findViewById(R.id.top5_genres_text_view);
-
-
 
 
         Button returnToStart = (Button) findViewById(R.id.returnToStart);
@@ -117,13 +91,12 @@ public class TopGenres extends AppCompatActivity {
             mediaPlayer.stop();
 
             StartingWrappedScreen.setArtistsToDisplay(new ArrayList<>());
-            StartingWrappedScreen.setArtistToId(new HashMap<>());
+            StartingWrappedScreen.setArtistToId(new LinkedHashMap<>());
 
             StartingWrappedScreen.setTopGenres(new ArrayList<>());
 
             StartingWrappedScreen.setTopTracksToDisplay(new ArrayList<>());
-            StartingWrappedScreen.setTrackToId(new HashMap<>());
-
+            StartingWrappedScreen.setTrackToId(new LinkedHashMap<>());
 
 
             startActivity(new Intent(TopGenres.this, StartingWrappedScreen.class));
@@ -131,11 +104,11 @@ public class TopGenres extends AppCompatActivity {
 
         saveData.setOnClickListener((v) -> {
 
-            String[] songNames = new String[5];
+            String[] songNames = new String[50];
             Map<String, String> trackIdMap = StartingWrappedScreen.getTrackToId();
 
             Log.d("track id map", trackIdMap.toString());
-            String[] audioUrls = new String[5];
+            String[] audioUrls = new String[50];
 
             int tracker = 0;
             for (Map.Entry<String, String> x : trackIdMap.entrySet()) {
@@ -161,26 +134,26 @@ public class TopGenres extends AppCompatActivity {
 
             Calendar cal = Calendar.getInstance();
             int date = cal.get(Calendar.DAY_OF_YEAR);
-            String time_frame = "";
+            int time_frame = 0;
             String months_wrapped = StartingWrappedScreen.desired_time_frame;
             if (months_wrapped.equals("short_term")) {
-                time_frame = "4";
-            } else if (months_wrapped.equals("medium_term")){
-                time_frame = "6";
+                time_frame = 4;
+            } else if (months_wrapped.equals("medium_term")) {
+                time_frame = 6;
             } else if (months_wrapped.equals("long_term")) {
-                time_frame = "12";
+                time_frame = 12;
             }
-
-            int id = Integer.valueOf(String.valueOf(date) + time_frame + String.valueOf(LoginActivity.currentUserHash) );
 
             Log.d("date", String.valueOf(date));
             Log.d("time frame", String.valueOf(time_frame));
-            Log.d("id", String.valueOf(id));
+            Log.d("id", String.valueOf(LoginActivity.currentUserID));
 
             try {
-                String[] idCheck = StorageSystem.readWrappedEntryValue(WrappedSongEntry.TABLE_NAME, "id", String.valueOf(id), WrappedSongEntry.COLUMN_ID);
+                String[] fieldsToMatch = new String[] {WrappedSongEntry.COLUMN_ACCOUNT_ID, WrappedSongEntry.COLUMN_DATE, WrappedSongEntry.COLUMN_DURATION};
+                String[] matchedValues = new String[] {String.valueOf(LoginActivity.currentUserID), String.valueOf(date), String.valueOf(time_frame)};
+                String[][] idCheck = StorageSystem.readWrappedEntry(WrappedSongEntry.TABLE_NAME, fieldsToMatch, matchedValues);
                 if (idCheck.length != 0) {
-                    Log.d("duplicate?", String.join(", ", idCheck));
+                    Log.d("duplicate?", String.join(", ", matchedValues));
                     Toast.makeText(TopGenres.this, "Wrapped for today already exists!", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
@@ -190,14 +163,15 @@ public class TopGenres extends AppCompatActivity {
                 Log.d("no duplicate", "something happened? " + e);
             }
 
-            StorageSystem.writeWrappedSong(id, songNames, audioUrls, LoginActivity.currentUserHash);
-            StorageSystem.writeWrappedArtist(id, artistNames, LoginActivity.currentUserHash);
-            StorageSystem.writeWrappedGenre(id, genreNames, LoginActivity.currentUserHash);
+            for (int i = 0; i < songNames.length; i++) {
+                StorageSystem.writeWrappedSong(songNames[i], LoginActivity.currentUserID, date, time_frame, audioUrls[i]);
+            }
+            for (int i = 0; i < artistNames.length; i++) {
+                StorageSystem.writeWrappedArtist(artistNames[i], LoginActivity.currentUserID, date, time_frame);
+                StorageSystem.writeWrappedGenre(genreNames[i], LoginActivity.currentUserID, date, time_frame);
+            }
 
             Log.d("everything worked fine", "yayy!!");
-
-
-            // StorageSystem.writeWrappedSong()
         });
     }
 

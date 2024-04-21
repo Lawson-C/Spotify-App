@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -84,12 +85,12 @@ public class PastTopGenres extends AppCompatActivity {
             mediaPlayer.stop();
 
             StartingWrappedScreen.setArtistsToDisplay(new ArrayList<>());
-            StartingWrappedScreen.setArtistToId(new HashMap<>());
+            StartingWrappedScreen.setArtistToId(new LinkedHashMap<>());
 
             StartingWrappedScreen.setTopGenres(new ArrayList<>());
 
             StartingWrappedScreen.setTopTracksToDisplay(new ArrayList<>());
-            StartingWrappedScreen.setTrackToId(new HashMap<>());
+            StartingWrappedScreen.setTrackToId(new LinkedHashMap<>());
 
 
 
